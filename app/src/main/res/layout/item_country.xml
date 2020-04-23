@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="country"
+            type="com.n2n.covid19.model.CountryView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_8">
+
+        <TextView
+            android:id="@+id/tv_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.country}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_new_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.newConfirmed}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_country" />
+
+        <TextView
+            android:id="@+id/tv_total_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.totalConfirmed}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_new_confirmed" />
+
+        <TextView
+            android:id="@+id/tv_new_death"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.newDeath}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed" />
+
+        <TextView
+            android:id="@+id/tv_total_death"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.totalDeath}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_death" />
+
+        <TextView
+            android:id="@+id/tv_new_recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.newRecovered}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_death" />
+
+        <TextView
+            android:id="@+id/tv_total_recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.totalRecovered}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{country.date}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
