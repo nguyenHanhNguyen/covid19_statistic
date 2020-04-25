@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -19,7 +20,7 @@
             android:id="@+id/tv_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.country}"
+            android:text="@{@string/tv_country(country.country)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +28,7 @@
             android:id="@+id/tv_new_confirmed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.newConfirmed}"
+            android:text="@{@string/tv_new_confirmed(country.newConfirmed)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_country" />
 
@@ -35,7 +36,7 @@
             android:id="@+id/tv_total_confirmed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.totalConfirmed}"
+            android:text="@{@string/tv_total_confirmed (country.totalConfirmed)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_new_confirmed" />
 
@@ -43,7 +44,7 @@
             android:id="@+id/tv_new_death"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.newDeath}"
+            android:text="@{@string/tv_new_death (country.newDeath)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed" />
 
@@ -51,7 +52,7 @@
             android:id="@+id/tv_total_death"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.totalDeath}"
+            android:text="@{@string/tv_total_death(country.totalDeath)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_new_death" />
 
@@ -59,7 +60,7 @@
             android:id="@+id/tv_new_recovered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.newRecovered}"
+            android:text="@{@string/tv_new_recovered (country.newRecovered)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_total_death" />
 
@@ -67,7 +68,7 @@
             android:id="@+id/tv_total_recovered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.totalRecovered}"
+            android:text="@{@string/tv_total_recovered (country.totalRecovered)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered" />
 
@@ -75,7 +76,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{country.date}"
+            android:text="@{@string/tv_date (country.date)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
 
