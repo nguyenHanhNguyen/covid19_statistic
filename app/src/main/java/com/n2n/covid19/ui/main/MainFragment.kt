@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.n2n.covid19.R
 import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
-import com.n2n.covid19.model.CountryView
+import com.n2n.covid19.databinding.MainFragmentBinding
+import com.n2n.covid19.model.summary.CountryView
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
@@ -25,11 +25,11 @@ class MainFragment : BaseFragment() {
 
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+    lateinit var binding: MainFragmentBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = MainFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class MainFragment : BaseFragment() {
 
     private fun setUpCountryList() {
         viewModel.listCountry.observe(
-            this, Observer {
+            viewLifecycleOwner, Observer {
                 renderCountryList(it)
             }
         )
@@ -49,10 +49,9 @@ class MainFragment : BaseFragment() {
 
     private fun renderCountryList(listCountry: List<CountryView>) {
         val countryAdapter = CountryAdapter(listCountry)
-        rv_countries.layoutManager = LinearLayoutManager(context)
+        binding.rvCountries.layoutManager = LinearLayoutManager(context)
         rv_countries.adapter = countryAdapter
     }
-
 
 
 }

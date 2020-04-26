@@ -8,7 +8,7 @@
 
         <variable
             name="country"
-            type="com.n2n.covid19.model.CountryView" />
+            type="com.n2n.covid19.model.summary.CountryView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

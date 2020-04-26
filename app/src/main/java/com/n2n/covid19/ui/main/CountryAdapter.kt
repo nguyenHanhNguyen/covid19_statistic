@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.n2n.covid19.databinding.ItemCountryBinding
-import com.n2n.covid19.model.CountryView
+import com.n2n.covid19.model.summary.CountryView
 
 class CountryAdapter(private val countries: List<CountryView>) :
     RecyclerView.Adapter<CountryAdapter.ViewHolder>() {

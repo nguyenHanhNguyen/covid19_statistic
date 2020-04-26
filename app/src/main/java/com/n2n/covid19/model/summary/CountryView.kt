@@ -1,4 +1,4 @@
-package com.n2n.covid19.model
+package com.n2n.covid19.model.summary
 
 data class CountryView(
     val country: String,
