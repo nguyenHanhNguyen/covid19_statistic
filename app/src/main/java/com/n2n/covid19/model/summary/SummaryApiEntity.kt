@@ -2,11 +2,17 @@ package com.n2n.covid19.model.summary
 
 import com.google.gson.annotations.SerializedName
 
-class CountryApiEntity {
+class CountrySummaryApiEntity {
 
-    @SerializedName("Country")
-    var country: String = ""
+    @SerializedName("Global")
+    val global: Global? = null
 
+    @SerializedName("Countries")
+    val countries: List<SummaryCountryApiEntity>? = null
+
+}
+
+class Global {
     @SerializedName("NewConfirmed")
     var newConfirmed: Int = 0
 
@@ -24,18 +30,4 @@ class CountryApiEntity {
 
     @SerializedName("TotalRecovered")
     var totalRecovered: Int = 0
-
-    @SerializedName("Date")
-    var date: String = ""
-
-    fun toCountryDomain() = CountryDomain(
-        country,
-        newConfirmed,
-        totalConfirmed,
-        newDeath,
-        totalDeath,
-        newRecovered,
-        totalRecovered,
-        date
-    )
 }

@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.n2n.covid19.databinding.ItemCountryBinding
-import com.n2n.covid19.model.summary.CountryView
+import com.n2n.covid19.model.summary.SummaryView
 
-class CountryAdapter(private val countries: List<CountryView>) :
+class CountryAdapter(private val summaries: List<SummaryView>) :
     RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -15,16 +15,16 @@ class CountryAdapter(private val countries: List<CountryView>) :
         return ViewHolder(binding)
     }
 
-    override fun getItemCount() = countries.size
+    override fun getItemCount() = summaries.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(countries[position])
+        holder.bind(summaries[position])
 
     inner class ViewHolder(private val binding: ItemCountryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(country: CountryView) {
-            binding.country = country
+        fun bind(summary: SummaryView) {
+            binding.country = summary
             binding.executePendingBindings()
         }
     }

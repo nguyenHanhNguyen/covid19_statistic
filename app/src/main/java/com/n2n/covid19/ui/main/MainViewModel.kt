@@ -6,17 +6,16 @@ import androidx.lifecycle.ViewModel
 import com.n2n.covid19.UseCase
 import com.n2n.covid19.exception.Failure
 import com.n2n.covid19.extension.convertUtcFormat
-import com.n2n.covid19.model.summary.CountryDomain
-import com.n2n.covid19.model.summary.CountryView
+import com.n2n.covid19.model.summary.SummaryDomain
+import com.n2n.covid19.model.summary.SummaryView
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase) :
-    ViewModel() {
+class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase) : ViewModel() {
 
-    private val _listCountry = MutableLiveData<List<CountryView>>()
+    private val _listCountry = MutableLiveData<List<SummaryView>>()
     private val _loading = MutableLiveData<Boolean>()
 
-    val listCountry: LiveData<List<CountryView>> = _listCountry
+    val listSummary: LiveData<List<SummaryView>> = _listCountry
     val loading: LiveData<Boolean> = _loading
 
     private val _failure: MutableLiveData<Failure> = MutableLiveData()
@@ -35,10 +34,10 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
         }
     }
 
-    private fun onGetCountrySuccess(countries: List<CountryDomain>) {
+    private fun onGetCountrySuccess(countries: List<SummaryDomain>) {
         _loading.value = false
         _listCountry.postValue(countries.map {
-            CountryView(
+            SummaryView(
                 it.country,
                 String.format("%,d", it.newConfirmed),
                 String.format("%,d", it.totalConfirmed),

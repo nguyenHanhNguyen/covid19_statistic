@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
-import com.n2n.covid19.model.summary.CountryView
+import com.n2n.covid19.model.summary.SummaryView
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -49,15 +49,15 @@ class MainFragment : BaseFragment() {
                 }
             }
         )
-        viewModel.listCountry.observe(
+        viewModel.listSummary.observe(
             viewLifecycleOwner, Observer {
                 renderCountryList(it)
             }
         )
     }
 
-    private fun renderCountryList(listCountry: List<CountryView>) {
-        val countryAdapter = CountryAdapter(listCountry)
+    private fun renderCountryList(listSummary: List<SummaryView>) {
+        val countryAdapter = CountryAdapter(listSummary)
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
     }

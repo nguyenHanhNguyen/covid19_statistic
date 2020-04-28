@@ -1,6 +1,6 @@
 package com.n2n.covid19.model.summary
 
-data class CountryView(
+data class SummaryView(
     val country: String,
     val newConfirmed: String,
     val totalConfirmed: String,
