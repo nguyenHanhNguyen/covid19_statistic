@@ -11,7 +11,6 @@ import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
 import com.n2n.covid19.model.summary.CountryView
-import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -25,7 +24,7 @@ class MainFragment : BaseFragment() {
 
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
-    lateinit var binding: MainFragmentBinding
+    private lateinit var binding: MainFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
@@ -35,7 +34,6 @@ class MainFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         appComponent.inject(this)
-        viewModel.getCountrySummary()
         setUpCountryList()
     }
 
@@ -50,7 +48,7 @@ class MainFragment : BaseFragment() {
     private fun renderCountryList(listCountry: List<CountryView>) {
         val countryAdapter = CountryAdapter(listCountry)
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
-        rv_countries.adapter = countryAdapter
+        binding.rvCountries.adapter = countryAdapter
     }
 
 
