@@ -14,8 +14,10 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
     ViewModel() {
 
     private val _listCountry = MutableLiveData<List<CountryView>>()
+    private val _loading = MutableLiveData<Boolean>()
 
     val listCountry: LiveData<List<CountryView>> = _listCountry
+    val loading: LiveData<Boolean> = _loading
 
     private val _failure: MutableLiveData<Failure> = MutableLiveData()
 
@@ -24,15 +26,17 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
     }
 
     private fun getCountrySummary() {
+        _loading.postValue(true)
         getSummaryUseCase(UseCase.None()) {
             it.either(
                 ::handleFailure,
-                ::onGetCountryDomain
+                ::onGetCountrySuccess
             )
         }
     }
 
-    private fun onGetCountryDomain(countries: List<CountryDomain>) {
+    private fun onGetCountrySuccess(countries: List<CountryDomain>) {
+        _loading.value = false
         _listCountry.postValue(countries.map {
             CountryView(
                 it.country,
@@ -47,8 +51,8 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
     }
 
     private fun handleFailure(failure: Failure) {
-        this._failure.value = failure
+        _loading.value = false
+        _failure.value = failure
     }
-
 
 }

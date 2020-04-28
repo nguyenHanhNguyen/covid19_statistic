@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
 
-@Database(entities = arrayOf(CountryDbEntity::class), version = 1, exportSchema = false)
+@Database(entities = [CountryDbEntity::class], version = 1, exportSchema = false)
 abstract class CovidRoomDatabase : RoomDatabase() {
 
     abstract fun countryDao(): CountryDao

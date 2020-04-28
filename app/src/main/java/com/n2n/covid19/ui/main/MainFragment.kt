@@ -3,6 +3,8 @@ package com.n2n.covid19.ui.main
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -38,6 +40,15 @@ class MainFragment : BaseFragment() {
     }
 
     private fun setUpCountryList() {
+        viewModel.loading.observe(
+            viewLifecycleOwner, Observer {
+                if (it) {
+                    binding.progressLoading.visibility = VISIBLE
+                } else {
+                    binding.progressLoading.visibility = GONE
+                }
+            }
+        )
         viewModel.listCountry.observe(
             viewLifecycleOwner, Observer {
                 renderCountryList(it)
