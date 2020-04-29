@@ -44,7 +44,8 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
                 String.format("%,d", it.newDeath),
                 String.format("%,d", it.totalDeath),
                 String.format("%,d", it.newRecovered),
-                it.totalRecovered.toString(), convertUtcFormat(it.date)
+                String.format("%,d", it.totalRecovered),
+                convertUtcFormat(it.date)
             )
         })
     }

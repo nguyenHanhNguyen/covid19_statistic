@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Covid19</string>
-    <string name="tv_country">Country: %s</string>
-    <string name="tv_new_confirmed">New Confirmed: %s</string>
-    <string name="tv_total_confirmed">Total Confirmed: %s</string>
-    <string name="tv_new_death">New Death: %s</string>
-    <string name="tv_total_death">Total Death: %s</string>
-    <string name="tv_new_recovered">New Recovered: %s</string>
-    <string name="tv_total_recovered">Total Recovered: %s</string>
-    <string name="tv_date">Update at: %s</string>
+    <string name="tv_new_confirmed">New Confirmed: </string>
+    <string name="tv_total_confirmed">Total Confirmed: </string>
+    <string name="tv_new_death">New Death: </string>
+    <string name="tv_total_death">Total Death: </string>
+    <string name="tv_new_recovered">New Recovered: </string>
+    <string name="tv_total_recovered">Total Recovered: </string>
+    <string name="tv_date">Update at: </string>
 </resources>

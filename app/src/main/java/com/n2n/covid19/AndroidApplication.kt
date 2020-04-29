@@ -7,7 +7,7 @@ class AndroidApplication : Application() {
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         DaggerApplicationComponent
             .builder()
-            .applicationModule(ApplicationModule())
+            .applicationModule(ApplicationModule(this))
             .build()
     }
 

@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
 
+const val DATABASE_NAME = "covid_database"
+
 @Database(entities = [CountryDbEntity::class], version = 1, exportSchema = false)
 abstract class CovidRoomDatabase : RoomDatabase() {
 
@@ -17,7 +19,7 @@ abstract class CovidRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: CovidRoomDatabase? = null
 
-        fun getDatabase(context: Context) : CovidRoomDatabase {
+        fun getDatabase(context: Context): CovidRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -26,7 +28,8 @@ abstract class CovidRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     CovidRoomDatabase::class.java,
-                    "covid_database").build()
+                    DATABASE_NAME
+                ).build()
                 INSTANCE = instance
                 return instance
             }

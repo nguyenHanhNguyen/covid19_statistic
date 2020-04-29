@@ -6,13 +6,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "country_table")
-class CountryDbEntity {
-
+data class CountryDbEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "country")
-    var country: String = ""
+    var country: String,
 
     @ColumnInfo(name = "slug")
-    var slug: String = ""
-}
+    var slug: String
+)

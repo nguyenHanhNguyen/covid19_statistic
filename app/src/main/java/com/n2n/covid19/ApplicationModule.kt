@@ -1,5 +1,8 @@
 package com.n2n.covid19
 
+import android.content.Context
+import com.n2n.covid19.model.CovidRoomDatabase
+import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.ui.main.MainRepository
 import com.n2n.covid19.ui.main.Network
 import dagger.Module
@@ -13,7 +16,7 @@ import javax.inject.Singleton
 const val API_COVID19 = "https://api.covid19api.com/"
 
 @Module
-class ApplicationModule {
+class ApplicationModule (val context: Context){
 
     @Provides
     @Singleton
@@ -39,4 +42,19 @@ class ApplicationModule {
         return dataSource
     }
 
+    @Provides
+    @Singleton
+    fun providesContext() = context
+
+    @Provides
+    @Singleton
+    fun providesDatabase(): CovidRoomDatabase {
+        return CovidRoomDatabase.getDatabase(context)
+    }
+
+    @Provides
+    @Singleton
+    fun providesCountryDao(covidDatabase: CovidRoomDatabase): CountryDao {
+        return covidDatabase.countryDao()
+    }
 }
