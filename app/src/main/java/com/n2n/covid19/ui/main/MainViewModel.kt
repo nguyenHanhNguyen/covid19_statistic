@@ -1,5 +1,6 @@
 package com.n2n.covid19.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +11,9 @@ import com.n2n.covid19.model.summary.SummaryDomain
 import com.n2n.covid19.model.summary.SummaryView
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase,
+                                        private val getCountryUseCase: GetCountryUseCase,
+                                        private val getCountryFromDbUseCase: GetCountryFromDbUseCase) : ViewModel() {
 
     private val _listCountry = MutableLiveData<List<SummaryView>>()
     private val _loading = MutableLiveData<Boolean>()
@@ -32,6 +35,7 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
                 ::onGetCountrySuccess
             )
         }
+        getCountryUseCase.getAndSaveCountry()
     }
 
     private fun onGetCountrySuccess(countries: List<SummaryDomain>) {
@@ -48,6 +52,7 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
                 convertUtcFormat(it.date)
             )
         })
+       // val countrySlug = getCountryFromDbUseCase.getCountrySlug()
     }
 
     private fun handleFailure(failure: Failure) {

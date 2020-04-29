@@ -11,6 +11,9 @@ interface CountryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(country: CountryDbEntity)
 
-    @Query("SELECT * from country_table")
-    fun getAllCountry(): List<CountryDbEntity>
+    @Query("SELECT country from country_table")
+    fun getAllCountryName(): List<String>
+
+    @Query("SELECT slug from country_table")
+    fun getAllCountrySlug(): List<String>
 }
