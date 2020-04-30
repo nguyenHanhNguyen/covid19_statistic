@@ -10,6 +10,21 @@ class CountrySummaryApiEntity {
     @SerializedName("Countries")
     val countries: List<SummaryCountryApiEntity>? = null
 
+    fun toGlobalCountryDomain(): GlobalCountriesDomain {
+        val globalDomain = GlobalDomain(
+            global!!.newConfirmed,
+            global.totalConfirmed,
+            global.newDeath,
+            global.totalDeath,
+            global.newRecovered,
+            global.totalRecovered
+        )
+        val countryListDomain = countries!!.map {
+            it.toSummaryDomain()
+        }
+        return GlobalCountriesDomain(globalDomain, countryListDomain)
+    }
+
 }
 
 class Global {

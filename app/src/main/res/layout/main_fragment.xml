@@ -5,15 +5,148 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/size_8"
     tools:context=".ui.main.MainFragment">
+
+    <TextView
+        android:id="@+id/tv_global"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_8"
+        android:text="Global"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_new_confirmed_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_new_confirmed"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_global" />
+
+
+    <TextView
+        android:id="@+id/tv_new_confirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_new_confirmed_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_global"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/tv_total_confirmed_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_total_confirmed"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_confirmed_title" />
+
+
+    <TextView
+        android:id="@+id/tv_total_confirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_total_confirmed_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_confirmed"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/tv_new_death_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_new_death"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
+
+    <TextView
+        android:id="@+id/tv_new_death"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_new_death_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/tv_total_death_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_total_death"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_death_title" />
+
+    <TextView
+        android:id="@+id/tv_total_death"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_total_death_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_death"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/tv_new_recovered_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_new_recovered"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
+
+    <TextView
+        android:id="@+id/tv_new_recovered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_new_recovered_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_death"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/tv_total_recovered_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_total_recovered"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered_title" />
+
+    <TextView
+        android:id="@+id/tv_total_recovered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_total_recovered_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/tv_country_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_8"
+        android:text="@string/tv_countries"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_countries"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_country_list" />
 
     <ProgressBar
         android:id="@+id/progress_loading"

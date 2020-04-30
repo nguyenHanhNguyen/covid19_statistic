@@ -7,4 +7,5 @@
     <string name="tv_new_recovered">New Recovered: </string>
     <string name="tv_total_recovered">Total Recovered: </string>
     <string name="tv_date">Update at: </string>
+    <string name="tv_countries">Countries</string>
 </resources>

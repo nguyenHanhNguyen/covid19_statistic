@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
+import com.n2n.covid19.model.summary.GlobalView
 import com.n2n.covid19.model.summary.SummaryView
+import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -54,12 +56,26 @@ class MainFragment : BaseFragment() {
                 renderCountryList(it)
             }
         )
+        viewModel.global.observe(
+            viewLifecycleOwner, Observer {
+                renderGlobal(it)
+            }
+        )
     }
 
     private fun renderCountryList(listSummary: List<SummaryView>) {
         val countryAdapter = CountryAdapter(listSummary)
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
+    }
+
+    private fun renderGlobal(globalView: GlobalView) {
+        binding.tvNewConfirmed.text = globalView.newConfirmed
+        binding.tvTotalConfirmed.text = globalView.totalConfirmed
+        binding.tvNewDeath.text = globalView.newDeath
+        binding.tvTotalDeath.text = globalView.totalDeath
+        binding.tvNewRecovered.text = globalView.newRecovered
+        binding.tvTotalRecovered.text = globalView.totalRecovered
     }
 
 
