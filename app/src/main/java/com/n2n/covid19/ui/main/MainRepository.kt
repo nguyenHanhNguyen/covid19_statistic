@@ -6,15 +6,14 @@ import com.n2n.covid19.functional.Either
 import com.n2n.covid19.model.country.CountryApiEntity
 import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
-import com.n2n.covid19.model.summary.CountrySummaryApiEntity
-import com.n2n.covid19.model.summary.GlobalCountriesDomain
+import com.n2n.covid19.model.summary.SummaryApiEntity
 import com.n2n.covid19.model.summary.SummaryDomain
 import com.n2n.covid19.network.BaseNetwork
 import com.n2n.covid19.network.CovidService
 import javax.inject.Inject
 
 interface MainRepository {
-    fun getSummary(): Either<Failure, GlobalCountriesDomain>
+    fun getSummary(): Either<Failure, SummaryDomain>
     fun getCountries(): Either<Failure, List<CountryDbEntity>>
     fun getCountriesSaveDb()
     fun getCountrySlugFromDb(): List<String>
@@ -23,10 +22,10 @@ interface MainRepository {
 class Network @Inject constructor(private val apiService: CovidService,
                                   private val countryDao: CountryDao) : BaseNetwork(), MainRepository {
 
-    override fun getSummary(): Either<Failure, GlobalCountriesDomain> {
+    override fun getSummary(): Either<Failure, SummaryDomain> {
         return request(apiService.getSummaryData()
-            , { it.toGlobalCountryDomain() }
-            , CountrySummaryApiEntity())
+            , { it.toSummaryDomain() }
+            , SummaryApiEntity())
 
     }
 

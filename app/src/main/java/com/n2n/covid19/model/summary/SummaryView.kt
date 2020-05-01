@@ -1,11 +1,11 @@
 package com.n2n.covid19.model.summary
 
-data class GlobalCountryView(
+data class SummaryView(
     val global: GlobalView,
-    val countriesList: List<SummaryView>
+    val countriesList: List<SummaryCountryView>
 )
 
-data class SummaryView(
+data class SummaryCountryView(
     val country: String,
     val newConfirmed: String,
     val totalConfirmed: String,

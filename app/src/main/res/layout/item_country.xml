@@ -9,7 +9,7 @@
 
         <variable
             name="country"
-            type="com.n2n.covid19.model.summary.SummaryView" />
+            type="com.n2n.covid19.model.summary.SummaryCountryView" />
     </data>
 
     <androidx.cardview.widget.CardView

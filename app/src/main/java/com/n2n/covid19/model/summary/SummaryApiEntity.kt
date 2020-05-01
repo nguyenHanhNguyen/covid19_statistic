@@ -2,7 +2,7 @@ package com.n2n.covid19.model.summary
 
 import com.google.gson.annotations.SerializedName
 
-class CountrySummaryApiEntity {
+class SummaryApiEntity {
 
     @SerializedName("Global")
     val global: Global? = null
@@ -10,7 +10,7 @@ class CountrySummaryApiEntity {
     @SerializedName("Countries")
     val countries: List<SummaryCountryApiEntity>? = null
 
-    fun toGlobalCountryDomain(): GlobalCountriesDomain {
+    fun toSummaryDomain(): SummaryDomain {
         val globalDomain = GlobalDomain(
             global!!.newConfirmed,
             global.totalConfirmed,
@@ -20,9 +20,9 @@ class CountrySummaryApiEntity {
             global.totalRecovered
         )
         val countryListDomain = countries!!.map {
-            it.toSummaryDomain()
+            it.toSummaryCountryDomain()
         }
-        return GlobalCountriesDomain(globalDomain, countryListDomain)
+        return SummaryDomain(globalDomain, countryListDomain)
     }
 
 }

@@ -13,8 +13,7 @@ import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
 import com.n2n.covid19.model.summary.GlobalView
-import com.n2n.covid19.model.summary.SummaryView
-import kotlinx.android.synthetic.main.main_fragment.*
+import com.n2n.covid19.model.summary.SummaryCountryView
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -63,7 +62,7 @@ class MainFragment : BaseFragment() {
         )
     }
 
-    private fun renderCountryList(listSummary: List<SummaryView>) {
+    private fun renderCountryList(listSummary: List<SummaryCountryView>) {
         val countryAdapter = CountryAdapter(listSummary)
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter

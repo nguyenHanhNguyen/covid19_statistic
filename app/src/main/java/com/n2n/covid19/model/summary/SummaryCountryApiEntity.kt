@@ -28,7 +28,7 @@ class SummaryCountryApiEntity {
     @SerializedName("Date")
     var date: String = ""
 
-    fun toSummaryDomain() = SummaryDomain(
+    fun toSummaryCountryDomain() = SummaryCountryDomain(
         country,
         newConfirmed,
         totalConfirmed,

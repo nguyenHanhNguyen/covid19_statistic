@@ -5,22 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.n2n.covid19.UseCase
 import com.n2n.covid19.exception.Failure
-import com.n2n.covid19.extension.convertUtcFormat
-import com.n2n.covid19.model.summary.GlobalCountriesDomain
-import com.n2n.covid19.model.summary.GlobalView
 import com.n2n.covid19.model.summary.SummaryDomain
-import com.n2n.covid19.model.summary.SummaryView
+import com.n2n.covid19.model.summary.GlobalView
+import com.n2n.covid19.model.summary.SummaryCountryView
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase,
                                         private val getCountryUseCase: GetCountryUseCase,
                                         private val getCountryFromDbUseCase: GetCountryFromDbUseCase) : ViewModel() {
 
-    private val _listCountry = MutableLiveData<List<SummaryView>>()
+    private val _listCountry = MutableLiveData<List<SummaryCountryView>>()
     private val _loading = MutableLiveData<Boolean>()
     private val _global = MutableLiveData<GlobalView>()
 
-    val listSummary: LiveData<List<SummaryView>> = _listCountry
+    val listSummary: LiveData<List<SummaryCountryView>> = _listCountry
     val global: LiveData<GlobalView> = _global
     val loading: LiveData<Boolean> = _loading
 
@@ -41,33 +39,11 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
         getCountryUseCase.getAndSaveCountry()
     }
 
-    private fun onGetSummarySuccess(summary: GlobalCountriesDomain) {
+    private fun onGetSummarySuccess(summary: SummaryDomain) {
         _loading.value = false
-        _listCountry.postValue(summary.countriesList.map {
-            SummaryView(
-                it.country,
-                String.format("%,d", it.newConfirmed),
-                String.format("%,d", it.totalConfirmed),
-                String.format("%,d", it.newDeath),
-                String.format("%,d", it.totalDeath),
-                String.format("%,d", it.newRecovered),
-                String.format("%,d", it.totalRecovered),
-                convertUtcFormat(it.date)
-            )
-        })
-
-        summary.global.let {
-            _global.postValue(
-                GlobalView(
-                    String.format("%,d", it.newConfirmed),
-                    String.format("%,d", it.totalConfirmed),
-                    String.format("%,d", it.newDeath),
-                    String.format("%,d", it.totalDeath),
-                    String.format("%,d", it.newRecovered),
-                    String.format("%,d", it.totalRecovered)
-                )
-            )
-        }
+        val summaryView = summary.toSummaryView()
+        _listCountry.postValue(summaryView.countriesList)
+        _global.postValue(summaryView.global)
         // val countrySlug = getCountryFromDbUseCase.getCountrySlug()
     }
 
