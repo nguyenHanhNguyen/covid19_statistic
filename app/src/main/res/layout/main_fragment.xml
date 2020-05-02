@@ -1,167 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/size_8"
-    tools:context=".ui.main.MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_global"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/size_8"
-        android:text="Global"
-        android:textSize="@dimen/text_size_20"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_new_confirmed_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_new_confirmed"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_global" />
+        <import type="android.view.View" />
 
+        <variable
+            name="viewModelBinding"
+            type="com.n2n.covid19.ui.main.MainViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_new_confirmed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/size_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_new_confirmed_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_global"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/tv_total_confirmed_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_total_confirmed"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_confirmed_title" />
-
-
-    <TextView
-        android:id="@+id/tv_total_confirmed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/size_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_total_confirmed_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_confirmed"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/tv_new_death_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_new_death"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
-
-    <TextView
-        android:id="@+id/tv_new_death"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/size_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_new_death_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/tv_total_death_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_total_death"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_death_title" />
-
-    <TextView
-        android:id="@+id/tv_total_death"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/size_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_total_death_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_death"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/tv_new_recovered_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_new_recovered"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
-
-    <TextView
-        android:id="@+id/tv_new_recovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/size_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_new_recovered_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_total_death"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/tv_total_recovered_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_total_recovered"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered_title" />
-
-    <TextView
-        android:id="@+id/tv_total_recovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/size_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_total_recovered_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered"
-        tools:text="100" />
-
-    <TextView
-        android:id="@+id/tv_country_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/size_8"
-        android:text="@string/tv_countries"
-        android:textSize="@dimen/text_size_20"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_countries"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_country_list" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/size_8"
+        tools:context=".ui.main.MainFragment">
 
-    <ProgressBar
-        android:id="@+id/progress_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!--<TextView
+            android:id="@+id/tv_global"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/size_8"
+            android:text="Global"
+            android:textSize="@dimen/text_size_20"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_new_confirmed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_new_confirmed"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_global" />
+
+        <TextView
+            android:id="@+id/tv_new_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_8"
+            android:text="@{viewModelBinding.global.newConfirmed}"
+            app:layout_constraintStart_toEndOf="@+id/tv_new_confirmed_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_global"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/tv_total_confirmed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_total_confirmed"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_confirmed_title" />
+
+        <TextView
+            android:id="@+id/tv_total_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_8"
+            android:text="@{viewModelBinding.global.totalConfirmed}"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_confirmed_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_confirmed"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/tv_new_death_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_new_death"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
+
+        <TextView
+            android:id="@+id/tv_new_death"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_8"
+            android:text="@{viewModelBinding.global.newDeath}"
+            app:layout_constraintStart_toEndOf="@+id/tv_new_death_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/tv_total_death_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_total_death"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_death_title" />
+
+        <TextView
+            android:id="@+id/tv_total_death"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_8"
+            android:text="@{viewModelBinding.global.totalDeath}"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_death_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_death"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/tv_new_recovered_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_new_recovered"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
+
+        <TextView
+            android:id="@+id/tv_new_recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_8"
+            android:text="@{viewModelBinding.global.newRecovered}"
+            app:layout_constraintStart_toEndOf="@+id/tv_new_recovered_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_death"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/tv_total_recovered_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_total_recovered"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered_title" />
+
+        <TextView
+            android:id="@+id/tv_total_recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_8"
+            android:text="@{viewModelBinding.global.totalRecovered}"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_recovered_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_recovered"
+            tools:text="100" />-->
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_200"
+            android:theme="@style/Theme.App.AppBarOverlay">
+
+            <include layout="@layout/layout_header_main" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:id="@+id/tv_country_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_8"
+                android:text="@string/tv_countries"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_countries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_country_list" />
+
+            <ProgressBar
+                android:id="@+id/progress_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModelBinding.loading ? View.VISIBLE: View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

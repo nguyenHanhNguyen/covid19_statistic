@@ -31,6 +31,7 @@ class MainFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -38,26 +39,15 @@ class MainFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         appComponent.inject(this)
         setUpCountryList()
+        binding.apply {
+            viewModelBinding = viewModel
+        }
     }
 
     private fun setUpCountryList() {
-        viewModel.loading.observe(
-            viewLifecycleOwner, Observer {
-                if (it) {
-                    binding.progressLoading.visibility = VISIBLE
-                } else {
-                    binding.progressLoading.visibility = GONE
-                }
-            }
-        )
         viewModel.listSummary.observe(
             viewLifecycleOwner, Observer {
                 renderCountryList(it)
-            }
-        )
-        viewModel.global.observe(
-            viewLifecycleOwner, Observer {
-                renderGlobal(it)
             }
         )
     }
@@ -67,15 +57,5 @@ class MainFragment : BaseFragment() {
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
     }
-
-    private fun renderGlobal(globalView: GlobalView) {
-        binding.tvNewConfirmed.text = globalView.newConfirmed
-        binding.tvTotalConfirmed.text = globalView.totalConfirmed
-        binding.tvNewDeath.text = globalView.newDeath
-        binding.tvTotalDeath.text = globalView.totalDeath
-        binding.tvNewRecovered.text = globalView.newRecovered
-        binding.tvTotalRecovered.text = globalView.totalRecovered
-    }
-
 
 }
