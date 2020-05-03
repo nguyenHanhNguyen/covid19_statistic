@@ -38,10 +38,13 @@ class MainFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         appComponent.inject(this)
-        setUpCountryList()
         binding.apply {
             viewModelBinding = viewModel
         }
+        binding.mainHeader.apply {
+            globalBinding = viewModel
+        }
+        setUpCountryList()
     }
 
     private fun setUpCountryList() {

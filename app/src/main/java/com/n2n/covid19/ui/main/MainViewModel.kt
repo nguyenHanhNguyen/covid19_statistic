@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
                 ::onGetSummarySuccess
             )
         }
-        getCountryUseCase.getAndSaveCountry()
+//        getCountryUseCase.getAndSaveCountry()
     }
 
     private fun onGetSummarySuccess(summary: SummaryDomain) {
