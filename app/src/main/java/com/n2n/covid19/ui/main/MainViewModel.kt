@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.n2n.covid19.UseCase
 import com.n2n.covid19.exception.Failure
-import com.n2n.covid19.model.summary.GlobalView
-import com.n2n.covid19.model.summary.SummaryCountryView
-import com.n2n.covid19.model.summary.SummaryDomain
-import com.n2n.covid19.model.summary.SummaryView
+import com.n2n.covid19.model.summary.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,6 +23,7 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
     val loading: LiveData<Boolean> = _loading
 
     private val _failure: MutableLiveData<Failure> = MutableLiveData()
+    var countriesDomain: List<SummaryCountryDomain>? = null
 
     init {
         getCountrySummary()
@@ -46,14 +44,28 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
         viewModelScope.launch {
             notifyViewLoadSuccess(summary.toSummaryView())
         }
+        countriesDomain = summary.countriesList
         //notifyViewLoadSuccess(summary.toSummaryView())
         // val countrySlug = getCountryFromDbUseCase.getCountrySlug()
+    }
+
+    fun sortByTotalConfirmedDescending() {
+        _loading.postValue(true)
+        val sortedList = countriesDomain?.sortedByDescending { it.totalConfirmed }
+        viewModelScope.launch {
+            loadCountryList(sortedList?.map { it.toSummaryCountryView() }!!)
+        }
     }
 
     private fun notifyViewLoadSuccess(summaryView: SummaryView) {
         _loading.postValue(false)
         _listCountry.postValue(summaryView.countriesList)
         _global.postValue(summaryView.global)
+    }
+
+    private fun loadCountryList(countries: List<SummaryCountryView>) {
+        _loading.postValue(false)
+        _listCountry.postValue(countries)
     }
 
     private fun handleFailure(failure: Failure) {
