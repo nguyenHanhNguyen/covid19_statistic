@@ -3,11 +3,14 @@ package com.n2n.covid19.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.n2n.covid19.UseCase
 import com.n2n.covid19.exception.Failure
-import com.n2n.covid19.model.summary.SummaryDomain
 import com.n2n.covid19.model.summary.GlobalView
 import com.n2n.covid19.model.summary.SummaryCountryView
+import com.n2n.covid19.model.summary.SummaryDomain
+import com.n2n.covid19.model.summary.SummaryView
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase,
@@ -40,11 +43,17 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
     }
 
     private fun onGetSummarySuccess(summary: SummaryDomain) {
-        _loading.value = false
-        val summaryView = summary.toSummaryView()
+        viewModelScope.launch {
+            notifyViewLoadSuccess(summary.toSummaryView())
+        }
+        //notifyViewLoadSuccess(summary.toSummaryView())
+        // val countrySlug = getCountryFromDbUseCase.getCountrySlug()
+    }
+
+    private fun notifyViewLoadSuccess(summaryView: SummaryView) {
+        _loading.postValue(false)
         _listCountry.postValue(summaryView.countriesList)
         _global.postValue(summaryView.global)
-        // val countrySlug = getCountryFromDbUseCase.getCountrySlug()
     }
 
     private fun handleFailure(failure: Failure) {

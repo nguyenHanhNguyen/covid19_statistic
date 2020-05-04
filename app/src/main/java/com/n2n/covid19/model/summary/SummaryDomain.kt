@@ -1,16 +1,26 @@
 package com.n2n.covid19.model.summary
 
 import com.n2n.covid19.extension.convertUtcFormat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 data class SummaryDomain(
     val global: GlobalDomain,
     val countriesList: List<SummaryCountryDomain>
 ) {
-    fun toSummaryView() : SummaryView{
-        val globalView = global.toGlobalView()
-        val countriesView = countriesList.map { it.toSummaryCountryView() }
-        return SummaryView(globalView, countriesView)
+    suspend fun toSummaryView() : SummaryView{
+        return withContext(Dispatchers.Default) {
+            val globalView = global.toGlobalView()
+            val countriesView = countriesList.map { it.toSummaryCountryView() }
+            SummaryView(globalView, countriesView)
+        }
     }
+
+//    fun toSummaryView(): SummaryView {
+//        val globalView = global.toGlobalView()
+//        val countriesView = countriesList.map { it.toSummaryCountryView() }
+//        return SummaryView(globalView, countriesView)
+//    }
 }
 
 data class SummaryCountryDomain(
