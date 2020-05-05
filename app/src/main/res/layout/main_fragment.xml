@@ -21,7 +21,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
             android:theme="@style/Theme.App.AppBarOverlay">
 
             <include
