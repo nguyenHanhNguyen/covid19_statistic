@@ -50,12 +50,12 @@
                 android:id="@+id/tv_updated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_8"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_country_list"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_country_list"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_country_list"
-                android:layout_marginEnd="@dimen/size_8"
-                tools:text="123"
-                android:textStyle="italic"/>
+                tools:text="123" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_countries"
@@ -77,6 +77,17 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/size_16"
+                android:src="@drawable/ic_baseline_sort_24"
+                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

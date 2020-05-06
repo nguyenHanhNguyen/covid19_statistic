@@ -42,7 +42,7 @@ class MainFragment : BaseFragment() {
         binding.mainHeader.apply {
             globalBinding = viewModel
         }
-        //binding.btnSort.setOnClickListener{viewModel.sortByTotalConfirmedDescending()}
+        binding.fabSort.setOnClickListener{viewModel.sortByTotalConfirmedDescending()}
         setUpCountryList()
     }
 
