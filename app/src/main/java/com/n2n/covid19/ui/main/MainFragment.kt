@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.n2n.covid19.R
 import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
@@ -41,7 +42,7 @@ class MainFragment : BaseFragment() {
         binding.mainHeader.apply {
             globalBinding = viewModel
         }
-        binding.btnSort.setOnClickListener{viewModel.sortByTotalConfirmedDescending()}
+        //binding.btnSort.setOnClickListener{viewModel.sortByTotalConfirmedDescending()}
         setUpCountryList()
     }
 
@@ -57,6 +58,7 @@ class MainFragment : BaseFragment() {
         val countryAdapter = CountryAdapter(listSummary)
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
+        binding.tvUpdated.text = getString(R.string.tv_date, listSummary[0].date)
     }
 
 }

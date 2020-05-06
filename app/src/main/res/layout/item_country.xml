@@ -98,25 +98,6 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_total_recovered"
                 app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
 
-            <TextView
-                android:id="@+id/tv_date_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_date"
-                android:textStyle="italic"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
-
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_5"
-                android:text="@{country.date}"
-                app:layout_constraintStart_toEndOf="@+id/tv_date_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title"
-                tools:text="123"/>
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"

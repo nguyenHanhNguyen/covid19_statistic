@@ -6,6 +6,6 @@
     <string name="tv_total_death">Death</string>
     <string name="tv_new_recovered">New Recovered: </string>
     <string name="tv_total_recovered">Recovered</string>
-    <string name="tv_date">Updated at: </string>
+    <string name="tv_date">Updated at: %s</string>
     <string name="tv_countries">Countries</string>
 </resources>

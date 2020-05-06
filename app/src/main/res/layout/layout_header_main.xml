@@ -18,7 +18,7 @@
         android:minHeight="80dp"
         android:padding="@dimen/size_8"
         app:layoutDescription="@xml/motion_scene"
-        app:layout_scrollFlags="scroll|enterAlways|snap">
+        app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
 
         <TextView
             android:id="@+id/tv_global"
