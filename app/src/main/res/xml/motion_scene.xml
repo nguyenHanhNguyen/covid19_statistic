@@ -9,7 +9,7 @@
         motion:motionInterpolator="linear">
         <OnSwipe
             motion:dragDirection="dragUp"
-            motion:touchAnchorId="@+id/tv_total_death_title"
+            motion:touchAnchorId="@+id/tv_global"
             motion:touchAnchorSide="bottom" />
     </Transition>
 
@@ -18,50 +18,57 @@
             android:id="@+id/tv_global"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/tv_total_confirmed"
             motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/tv_total_confirmed" />
+
+        <Constraint
+            android:id="@+id/tv_total_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/tv_total_confirmed_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintLeft_toLeftOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/tv_global" />
-
-        <Constraint
-            android:id="@+id/tv_total_confirmed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintStart_toEndOf="@+id/tv_total_confirmed_title"
-            motion:layout_constraintTop_toBottomOf="@+id/tv_global" />
-
-        <Constraint
-            android:id="@+id/tv_total_death_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintLeft_toLeftOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
+            motion:layout_constraintEnd_toEndOf="@id/tv_total_confirmed"
+            motion:layout_constraintStart_toStartOf="@id/tv_total_confirmed"
+            motion:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed" />
 
         <Constraint
             android:id="@+id/tv_total_death"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintStart_toEndOf="@+id/tv_total_death_title"
-            motion:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed" />
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toLeftOf="@id/guideline"
+            motion:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
 
         <Constraint
-            android:id="@+id/tv_total_recovered_title"
+            android:id="@+id/tv_total_death_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintLeft_toLeftOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
+            motion:layout_constraintEnd_toEndOf="@id/tv_total_death"
+            motion:layout_constraintStart_toStartOf="@id/tv_total_death"
+            motion:layout_constraintTop_toBottomOf="@+id/tv_total_death" />
 
         <Constraint
             android:id="@+id/tv_total_recovered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintStart_toEndOf="@+id/tv_total_recovered_title"
-            motion:layout_constraintTop_toBottomOf="@+id/tv_total_death" />
+            motion:layout_constraintLeft_toRightOf="@id/guideline"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
+
+        <Constraint
+            android:id="@+id/tv_total_recovered_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toEndOf="@id/tv_total_recovered"
+            motion:layout_constraintStart_toStartOf="@id/tv_total_recovered"
+            motion:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
 
     </ConstraintSet>
 
@@ -71,51 +78,50 @@
             android:id="@+id/tv_global"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toBottomOf="@id/tv_total_recovered_title"
+            motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintLeft_toLeftOf="parent"
-            motion:layout_constraintTop_toTopOf="@id/tv_total_confirmed_title" />
-
-        <Constraint
-            android:id="@+id/tv_total_confirmed_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintEnd_toStartOf="@+id/tv_total_confirmed" />
+            motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/tv_total_confirmed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintRight_toRightOf="parent" />
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/tv_total_confirmed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/tv_total_death_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintEnd_toEndOf="@+id/tv_total_confirmed_title"
-            motion:layout_constraintEnd_toStartOf="@+id/tv_total_death"
+            motion:layout_constraintRight_toLeftOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed" />
 
         <Constraint
             android:id="@+id/tv_total_death"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintRight_toLeftOf="parent"
             motion:layout_constraintTop_toBottomOf="@id/tv_total_confirmed" />
 
         <Constraint
             android:id="@+id/tv_total_recovered_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintEnd_toStartOf="@+id/tv_total_recovered"
+            motion:layout_constraintLeft_toRightOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
 
         <Constraint
             android:id="@+id/tv_total_recovered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintLeft_toRightOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/tv_total_death" />
 
     </ConstraintSet>

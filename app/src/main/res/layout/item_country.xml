@@ -35,32 +35,25 @@
                 tools:text="USA" />
 
             <TextView
+                android:id="@+id/tv_total_confirmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{country.totalConfirmed}"
+                android:textSize="@dimen/text_size_20"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_country"
+                tools:text="1000" />
+
+            <TextView
                 android:id="@+id/tv_total_confirmed_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_total_confirmed"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_country" />
-
-            <TextView
-                android:id="@+id/tv_total_confirmed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_5"
-                android:text="@{country.totalConfirmed}"
-                app:layout_constraintStart_toEndOf="@+id/tv_total_confirmed_title"
-                app:layout_constraintTop_toBottomOf="@id/tv_country"
-                tools:text="1000" />
-
-            <TextView
-                android:id="@+id/tv_total_death_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_total_death"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_confirmed"
+                app:layout_constraintStart_toStartOf="@id/tv_total_confirmed"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_confirmed" />
 
             <TextView
                 android:id="@+id/tv_total_death"
@@ -68,9 +61,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_5"
                 android:text="@{country.totalDeath}"
-                app:layout_constraintStart_toEndOf="@+id/tv_total_death_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title"
                 tools:text="100" />
+
+            <TextView
+                android:id="@+id/tv_total_death_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_total_death"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_death"
+                app:layout_constraintStart_toStartOf="@id/tv_total_death"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_death" />
+
+
+            <TextView
+                android:id="@+id/tv_total_recovered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_5"
+                android:text="@{country.totalRecovered}"
+                app:layout_constraintLeft_toRightOf="@id/guideline"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_confirmed_title"
+                tools:text="10" />
 
             <TextView
                 android:id="@+id/tv_total_recovered_title"
@@ -78,28 +94,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tv_total_recovered"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
-
-            <TextView
-                android:id="@+id/tv_total_recovered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{country.totalRecovered}"
-                android:layout_marginStart="@dimen/size_5"
-                app:layout_constraintStart_toEndOf="@+id/tv_total_recovered_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_death"
-                tools:text="10" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_recovered"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_recovered"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
 
             <TextView
                 android:id="@+id/tv_date_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_date"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
-
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title" />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -108,7 +114,18 @@
                 android:layout_marginStart="@dimen/size_5"
                 android:text="@{country.date}"
                 app:layout_constraintStart_toEndOf="@+id/tv_date_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_death_title"
+                tools:text="123"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
