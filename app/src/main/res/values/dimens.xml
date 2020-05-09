@@ -4,8 +4,11 @@
     <dimen name="size_5">5dp</dimen>
     <dimen name="size_8">8dp</dimen>
     <dimen name="size_16">16dp</dimen>
+    <dimen name="size_32">32dp</dimen>
     <!--text-->
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_21">21sp</dimen>
     <dimen name="size_200">200dp</dimen>
 </resources>

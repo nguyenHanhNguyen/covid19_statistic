@@ -4,4 +4,11 @@
     <color name="purple500">#6200EE</color>
     <color name="purple700">#3700B3</color>
     <color name="teal200">#03DAC5</color>
+    <color name="color_death">#FF5733</color>
+    <color name="color_recover">#10B97A</color>
+    <color name="color_confirmed">#F1B036</color>
+    <color name="color_death_50">#80FF5733</color>
+    <color name="color_recover_50">#8010B97A</color>
+    <color name="color_confirmed_50">#80F1B036</color>
+    <color name="text_title">#FFFFFF</color>
 </resources>

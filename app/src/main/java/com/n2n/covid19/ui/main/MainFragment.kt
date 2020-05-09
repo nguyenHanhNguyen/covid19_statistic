@@ -12,6 +12,7 @@ import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
 import com.n2n.covid19.model.summary.SummaryCountryView
+import com.n2n.covid19.ui.main.filter.FilterBottomSheetDialog
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -22,6 +23,8 @@ class MainFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    val filterDialog: FilterBottomSheetDialog by lazy {FilterBottomSheetDialog.newInstance()}
 
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
@@ -42,8 +45,13 @@ class MainFragment : BaseFragment() {
         binding.mainHeader.apply {
             globalBinding = viewModel
         }
-        binding.fabSort.setOnClickListener{viewModel.sortByTotalConfirmedDescending()}
+        binding.fabSort.setOnClickListener{
+            activity?.let {
+                filterDialog.show(it.supportFragmentManager, "FILTER_DIALOG")
+            }
+        }
         setUpCountryList()
+        setUpFilter()
     }
 
     private fun setUpCountryList() {
@@ -52,6 +60,40 @@ class MainFragment : BaseFragment() {
                 renderCountryList(it)
             }
         )
+    }
+
+    private fun setUpFilter() {
+        filterDialog.onSortClick = object: FilterBottomSheetDialog.OnSortClick {
+            override fun onDeathAscClick() {
+                viewModel.sortByDeathAscending()
+                filterDialog.dismiss()
+            }
+
+            override fun onDeathDescClick() {
+                viewModel.sortByDeathDescending()
+                filterDialog.dismiss()
+            }
+
+            override fun onConfirmAscClick() {
+                viewModel.sortByTotalConfirmedAscending()
+                filterDialog.dismiss()
+            }
+
+            override fun onConfirmDescClick() {
+                viewModel.sortByTotalConfirmedDescending()
+                filterDialog.dismiss()
+            }
+
+            override fun onRecoverAscClick() {
+                viewModel.sortByRecoveredAscending()
+                filterDialog.dismiss()
+            }
+
+            override fun onRecoverDescClick() {
+                viewModel.sortByRecoveredDescending()
+                filterDialog.dismiss()
+            }
+        }
     }
 
     private fun renderCountryList(listSummary: List<SummaryCountryView>) {
