@@ -20,13 +20,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/size_8">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/size_8"
                 android:text="@{country.country}"
                 android:textSize="@dimen/text_size_16"
                 android:textStyle="italic"
@@ -97,11 +97,21 @@
                 android:id="@+id/tv_total_recovered_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/size_8"
                 android:text="@string/tv_total_recovered"
                 android:textColor="@color/color_recover"
+                app:layout_constraintBottom_toTopOf="@+id/view_percent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_total_recovered"
                 app:layout_constraintStart_toStartOf="@+id/tv_total_recovered"
                 app:layout_constraintTop_toBottomOf="@+id/tv_total_recovered" />
+
+            <com.n2n.covid19.ui.main.widget.CustomPercentView
+                android:id="@+id/view_percent"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_5"
+                android:layout_marginLeft="@dimen/cardview_compat_inset_shadow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_death_title" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

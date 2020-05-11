@@ -11,16 +11,7 @@ import kotlinx.android.synthetic.main.filter_bottom_sheet_dialog.*
 
 class FilterBottomSheetDialog : BottomSheetDialogFragment() {
 
-    interface OnSortClick {
-        fun onDeathAscClick()
-        fun onDeathDescClick()
-        fun onConfirmAscClick()
-        fun onConfirmDescClick()
-        fun onRecoverAscClick()
-        fun onRecoverDescClick()
-    }
-
-    var onSortClick: OnSortClick? = null
+    var onSortClick: SortFragment.OnSortClick? = null
 
     companion object {
         fun newInstance() = FilterBottomSheetDialog()
@@ -38,7 +29,9 @@ class FilterBottomSheetDialog : BottomSheetDialogFragment() {
 
     private fun setUpViewPager() {
         val pagerAdapter = ViewPagerAdapter(this)
+        pagerAdapter.onSortClick = onSortClick
         view_pager.adapter = pagerAdapter
+        view_pager.isSaveEnabled = false //prevent crash
         TabLayoutMediator(tab_layout, view_pager) { tab, position ->
             when (position) {
                 0 -> tab.text = "Sort"

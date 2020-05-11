@@ -13,7 +13,10 @@ data class SummaryCountryView(
     val totalDeath: String,
     val newRecovered: String,
     val totalRecovered: String,
-    val date: String
+    val date: String,
+    val totalDeathRaw: Int,
+    val totalRecoveredRaw: Int,
+    val totalConfirmedRaw: Int
 )
 
 data class GlobalView(

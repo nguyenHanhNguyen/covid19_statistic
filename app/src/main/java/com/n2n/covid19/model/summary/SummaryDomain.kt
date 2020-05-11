@@ -8,7 +8,7 @@ data class SummaryDomain(
     val global: GlobalDomain,
     val countriesList: List<SummaryCountryDomain>
 ) {
-    suspend fun toSummaryView() : SummaryView{
+    suspend fun toSummaryView(): SummaryView {
         return withContext(Dispatchers.Default) {
             val globalView = global.toGlobalView()
             val countriesView = countriesList.map { it.toSummaryCountryView() }
@@ -41,7 +41,10 @@ data class SummaryCountryDomain(
         String.format("%,d", totalDeath),
         String.format("%,d", newRecovered),
         String.format("%,d", totalRecovered),
-        convertUtcFormat(date)
+        convertUtcFormat(date),
+        totalDeath,
+        totalRecovered,
+        totalConfirmed
     )
 }
 

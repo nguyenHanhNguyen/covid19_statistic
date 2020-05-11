@@ -81,22 +81,6 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
         }
     }
 
-    fun sortByRecoveredDescending() {
-        _loading.postValue(true)
-        val sortedList = countriesDomain?.sortedByDescending { it.totalRecovered }
-        viewModelScope.launch {
-            loadCountryList(sortedList?.map { it.toSummaryCountryView() }!!)
-        }
-    }
-
-    fun sortByRecoveredAscending() {
-        _loading.postValue(true)
-        val sortedList = countriesDomain?.sortedBy { it.totalRecovered }
-        viewModelScope.launch {
-            loadCountryList(sortedList?.map { it.toSummaryCountryView() }!!)
-        }
-    }
-
     private fun notifyViewLoadSuccess(summaryView: SummaryView) {
         _loading.postValue(false)
         _listCountry.postValue(summaryView.countriesList)

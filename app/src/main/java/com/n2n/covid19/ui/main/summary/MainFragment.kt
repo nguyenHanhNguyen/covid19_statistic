@@ -13,6 +13,7 @@ import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
 import com.n2n.covid19.model.summary.SummaryCountryView
 import com.n2n.covid19.ui.main.filter.FilterBottomSheetDialog
+import com.n2n.covid19.ui.main.filter.SortFragment
 import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
@@ -24,7 +25,7 @@ class MainFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    val filterDialog: FilterBottomSheetDialog by lazy {FilterBottomSheetDialog.newInstance()}
+    val filterDialog: FilterBottomSheetDialog by lazy { FilterBottomSheetDialog.newInstance() }
 
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
@@ -45,10 +46,8 @@ class MainFragment : BaseFragment() {
         binding.mainHeader.apply {
             globalBinding = viewModel
         }
-        binding.fabSort.setOnClickListener{
-            activity?.let {
-                filterDialog.show(it.supportFragmentManager, "FILTER_DIALOG")
-            }
+        binding.fabSort.setOnClickListener {
+            filterDialog.show(activity!!.supportFragmentManager, "FILTER_DIALOG")
         }
         setUpCountryList()
         setUpFilter()
@@ -63,7 +62,7 @@ class MainFragment : BaseFragment() {
     }
 
     private fun setUpFilter() {
-        filterDialog.onSortClick = object: FilterBottomSheetDialog.OnSortClick {
+        filterDialog.onSortClick = object : SortFragment.OnSortClick {
             override fun onDeathAscClick() {
                 viewModel.sortByDeathAscending()
                 filterDialog.dismiss()
@@ -81,16 +80,6 @@ class MainFragment : BaseFragment() {
 
             override fun onConfirmDescClick() {
                 viewModel.sortByTotalConfirmedDescending()
-                filterDialog.dismiss()
-            }
-
-            override fun onRecoverAscClick() {
-                viewModel.sortByRecoveredAscending()
-                filterDialog.dismiss()
-            }
-
-            override fun onRecoverDescClick() {
-                viewModel.sortByRecoveredDescending()
                 filterDialog.dismiss()
             }
         }

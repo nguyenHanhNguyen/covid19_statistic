@@ -23,6 +23,8 @@ class CountryAdapter(private val summaries: List<SummaryCountryView>) : Recycler
         fun bind(summary: SummaryCountryView) {
             binding.country = summary
             binding.executePendingBindings()
+            binding.viewPercent.percentDeath = summary.totalDeathRaw.toFloat() / summary.totalConfirmedRaw
+            binding.viewPercent.percentRecover = summary.totalRecoveredRaw.toFloat() / summary.totalConfirmedRaw
         }
     }
 }
