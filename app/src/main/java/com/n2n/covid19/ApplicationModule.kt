@@ -3,8 +3,8 @@ package com.n2n.covid19
 import android.content.Context
 import com.n2n.covid19.model.CovidRoomDatabase
 import com.n2n.covid19.model.country.local.CountryDao
-import com.n2n.covid19.ui.main.MainRepository
-import com.n2n.covid19.ui.main.Network
+import com.n2n.covid19.ui.main.summary.MainRepository
+import com.n2n.covid19.ui.main.summary.Network
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

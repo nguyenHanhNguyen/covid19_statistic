@@ -2,7 +2,7 @@ package com.n2n.covid19.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.n2n.covid19.ui.main.MainViewModel
+import com.n2n.covid19.ui.main.summary.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

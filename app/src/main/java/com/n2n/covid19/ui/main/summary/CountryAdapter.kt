@@ -1,4 +1,4 @@
-package com.n2n.covid19.ui.main
+package com.n2n.covid19.ui.main.summary
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

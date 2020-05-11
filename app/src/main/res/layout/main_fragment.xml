@@ -9,14 +9,14 @@
 
         <variable
             name="viewModelBinding"
-            type="com.n2n.covid19.ui.main.MainViewModel" />
+            type="com.n2n.covid19.ui.main.summary.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.MainFragment">
+        tools:context=".ui.main.summary.MainFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

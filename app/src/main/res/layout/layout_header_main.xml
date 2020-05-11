@@ -7,7 +7,7 @@
 
         <variable
             name="globalBinding"
-            type="com.n2n.covid19.ui.main.MainViewModel" />
+            type="com.n2n.covid19.ui.main.summary.MainViewModel" />
     </data>
 
     <com.n2n.covid19.util.CollapsibleToolbar

@@ -1,7 +1,7 @@
 package com.n2n.covid19
 
 import com.n2n.covid19.core.ViewModelModule
-import com.n2n.covid19.ui.main.MainFragment
+import com.n2n.covid19.ui.main.summary.MainFragment
 import dagger.Component
 import javax.inject.Singleton
 

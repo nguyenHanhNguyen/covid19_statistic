@@ -1,4 +1,4 @@
-package com.n2n.covid19.ui.main
+package com.n2n.covid19.ui.main.summary
 
 import android.util.Log
 import com.n2n.covid19.exception.Failure
@@ -20,7 +20,8 @@ interface MainRepository {
 }
 
 class Network @Inject constructor(private val apiService: CovidService,
-                                  private val countryDao: CountryDao) : BaseNetwork(), MainRepository {
+                                  private val countryDao: CountryDao) : BaseNetwork(),
+    MainRepository {
 
     override fun getSummary(): Either<Failure, SummaryDomain> {
         return request(apiService.getSummaryData()

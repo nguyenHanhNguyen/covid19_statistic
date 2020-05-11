@@ -1,4 +1,4 @@
-package com.n2n.covid19.ui.main
+package com.n2n.covid19.ui.main.summary
 
 import com.n2n.covid19.UseCase
 import com.n2n.covid19.exception.Failure

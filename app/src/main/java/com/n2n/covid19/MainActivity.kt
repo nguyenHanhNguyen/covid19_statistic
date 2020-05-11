@@ -2,7 +2,7 @@ package com.n2n.covid19
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.n2n.covid19.ui.main.MainFragment
+import com.n2n.covid19.ui.main.summary.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
