@@ -16,12 +16,11 @@ interface MainRepository {
     fun getSummary(): Either<Failure, SummaryDomain>
     fun getCountries(): Either<Failure, List<CountryDbEntity>>
     fun getCountriesSaveDb()
-    fun getCountrySlugFromDb(): List<String>
+
 }
 
 class Network @Inject constructor(private val apiService: CovidService,
-                                  private val countryDao: CountryDao) : BaseNetwork(),
-    MainRepository {
+                                  private val countryDao: CountryDao) : BaseNetwork(), MainRepository {
 
     override fun getSummary(): Either<Failure, SummaryDomain> {
         return request(apiService.getSummaryData()
@@ -58,7 +57,7 @@ class Network @Inject constructor(private val apiService: CovidService,
         }
     }
 
-    override fun getCountrySlugFromDb(): List<String> {
+    private fun getCountrySlugFromDb(): List<String> {
         return countryDao.getAllCountrySlug()
     }
 }

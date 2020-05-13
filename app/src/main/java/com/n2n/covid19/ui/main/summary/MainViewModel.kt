@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummaryUseCase,
-                                        private val getCountryUseCase: GetCountryUseCase,
-                                        private val getCountryFromDbUseCase: GetCountryFromDbUseCase) : ViewModel() {
+                                        private val getCountryUseCase: GetCountryUseCase) : ViewModel() {
 
     private val _listCountry = MutableLiveData<List<SummaryCountryView>>()
     private val _loading = MutableLiveData<Boolean>()
@@ -37,7 +36,7 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
                 ::onGetSummarySuccess
             )
         }
-//        getCountryUseCase.getAndSaveCountry()
+        getCountryUseCase.getAndSaveCountry()
     }
 
     private fun onGetSummarySuccess(summary: SummaryDomain) {
@@ -46,7 +45,6 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
         }
         countriesDomain = summary.countriesList
         //notifyViewLoadSuccess(summary.toSummaryView())
-        // val countrySlug = getCountryFromDbUseCase.getCountrySlug()
     }
 
     fun sortByTotalConfirmedDescending() {
@@ -96,5 +94,4 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
         _loading.value = false
         _failure.value = failure
     }
-
 }

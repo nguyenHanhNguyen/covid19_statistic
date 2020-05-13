@@ -9,21 +9,16 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.n2n.covid19.R
 import com.n2n.covid19.core.BaseFragment
-import com.n2n.covid19.core.ViewModelFactory
 import com.n2n.covid19.databinding.MainFragmentBinding
 import com.n2n.covid19.model.summary.SummaryCountryView
 import com.n2n.covid19.ui.main.filter.FilterBottomSheetDialog
 import com.n2n.covid19.ui.main.filter.SortFragment
-import javax.inject.Inject
 
 class MainFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = MainFragment()
     }
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     val filterDialog: FilterBottomSheetDialog by lazy { FilterBottomSheetDialog.newInstance() }
 

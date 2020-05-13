@@ -16,4 +16,7 @@ interface CountryDao {
 
     @Query("SELECT slug from country_table")
     fun getAllCountrySlug(): List<String>
+
+    @Query("SELECT * from country_table WHERE country LIKE '%' || :search || '%'")
+    fun searchCountry(search: String): List<CountryDbEntity>
 }

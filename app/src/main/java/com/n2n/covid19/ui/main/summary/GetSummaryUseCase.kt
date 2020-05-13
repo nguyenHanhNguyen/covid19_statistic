@@ -24,11 +24,3 @@ class GetCountryUseCase @Inject constructor(private val mainRepository: MainRepo
         GlobalScope.launch { job.await() }
     }
 }
-
-class GetCountryFromDbUseCase @Inject constructor(private val mainRepository: MainRepository) {
-
-    fun getCountrySlug() {
-        val job = GlobalScope.async(Dispatchers.IO) {mainRepository.getCountrySlugFromDb()}
-        GlobalScope.launch { job.await() }
-    }
-}
