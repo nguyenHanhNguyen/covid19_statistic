@@ -8,7 +8,7 @@ interface SearchRepository {
     fun searchCountry(search: String): List<CountryDbEntity>
 }
 
-class Local @Inject constructor(val countryDao: CountryDao): SearchRepository {
+class Local @Inject constructor(private val countryDao: CountryDao): SearchRepository {
 
     override fun searchCountry(search: String): List<CountryDbEntity> {
         return countryDao.searchCountry(search)

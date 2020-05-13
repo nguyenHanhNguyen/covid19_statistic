@@ -1,5 +1,9 @@
 package com.n2n.covid19.extension
 
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
+import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,4 +18,12 @@ fun convertUtcFormat(utcDate: String): String {
         displayTime = displayTimeFormat.format(it)
     }
     return displayTime
+}
+
+fun setSpanText(textView: TextView, spanText: String, text: String, spanStyle: StyleSpan) {
+    val sb = SpannableStringBuilder(text)
+    val start = text.indexOf(spanText, ignoreCase = true)
+    val end = start + spanText.length
+    sb.setSpan(spanStyle, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+    textView.text = sb
 }

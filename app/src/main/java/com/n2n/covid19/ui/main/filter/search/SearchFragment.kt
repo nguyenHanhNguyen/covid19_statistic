@@ -37,7 +37,8 @@ class SearchFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ed_search_country.addTextChangedListener(object: CustomTextWatcher() {
-            override fun onTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                adapter.spanText = text.toString()
                 if (text.toString().isNotEmpty()) {
                     searchViewModel.searchCountry(text.toString())
                 } else {
