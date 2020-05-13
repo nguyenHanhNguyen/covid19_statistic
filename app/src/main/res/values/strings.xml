@@ -8,6 +8,7 @@
     <string name="tv_total_recovered">Recovered</string>
     <string name="tv_date">Updated at: %s</string>
     <string name="tv_countries">Countries</string>
-    <string name="tv_sort">Sort</string>
+    <string name="tab_sort">Sort</string>
+    <string name="tab_search">Search</string>
     <string name="ed_search_country">Search Country</string>
 </resources>

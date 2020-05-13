@@ -7,6 +7,7 @@ import com.n2n.covid19.ui.main.filter.search.SearchFragment
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     var onSortClick: SortFragment.OnSortClick ?= null
+    var onSearchClick: SearchFragment.OnSearchResultClick ?= null
 
     override fun getItemCount(): Int = 2
 
@@ -15,7 +16,9 @@ class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
             0 -> SortFragment().apply {
                 onClick = onSortClick
             }
-            else -> SearchFragment()
+            else -> SearchFragment().apply {
+                onSearchResultClick = onSearchClick
+            }
         }
     }
     

@@ -18,6 +18,12 @@ class SearchFragment : BaseFragment() {
     private val searchViewModel by viewModels<SearchViewModel> { viewModelFactory }
     var adapter = SearchCountryAdapter()
 
+    interface OnSearchResultClick {
+        fun setSlug(slug: String)
+    }
+
+    var onSearchResultClick: OnSearchResultClick? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.search_fragment, container, false)
     }
@@ -30,13 +36,18 @@ class SearchFragment : BaseFragment() {
                 renderResultCountry(it)
             }
         )
+        adapter.onItemClick = object : SearchCountryAdapter.OnItemClick {
+            override fun onCountryClick(slug: String) {
+                onSearchResultClick?.setSlug(slug)
+            }
+        }
         rv_country_result.layoutManager = LinearLayoutManager(context)
         rv_country_result.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ed_search_country.addTextChangedListener(object: CustomTextWatcher() {
+        ed_search_country.addTextChangedListener(object : CustomTextWatcher() {
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
                 adapter.spanText = text.toString()
                 if (text.toString().isNotEmpty()) {

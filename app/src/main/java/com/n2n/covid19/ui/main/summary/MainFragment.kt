@@ -1,6 +1,7 @@
 package com.n2n.covid19.ui.main.summary
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.n2n.covid19.databinding.MainFragmentBinding
 import com.n2n.covid19.model.summary.SummaryCountryView
 import com.n2n.covid19.ui.main.filter.FilterBottomSheetDialog
 import com.n2n.covid19.ui.main.filter.SortFragment
+import com.n2n.covid19.ui.main.filter.search.SearchFragment
 
 class MainFragment : BaseFragment() {
 
@@ -77,6 +79,13 @@ class MainFragment : BaseFragment() {
                 viewModel.sortByTotalConfirmedDescending()
                 filterDialog.dismiss()
             }
+        }
+        filterDialog.onSearchResultClick = object : SearchFragment.OnSearchResultClick {
+            override fun setSlug(slug: String) {
+                Log.e("slug", slug)
+                filterDialog.dismiss()
+            }
+
         }
     }
 

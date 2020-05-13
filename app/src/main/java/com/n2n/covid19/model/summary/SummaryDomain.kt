@@ -16,11 +16,6 @@ data class SummaryDomain(
         }
     }
 
-//    fun toSummaryView(): SummaryView {
-//        val globalView = global.toGlobalView()
-//        val countriesView = countriesList.map { it.toSummaryCountryView() }
-//        return SummaryView(globalView, countriesView)
-//    }
 }
 
 data class SummaryCountryDomain(

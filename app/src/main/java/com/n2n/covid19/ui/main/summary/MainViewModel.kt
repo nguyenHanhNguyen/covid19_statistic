@@ -44,7 +44,6 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
             notifyViewLoadSuccess(summary.toSummaryView())
         }
         countriesDomain = summary.countriesList
-        //notifyViewLoadSuccess(summary.toSummaryView())
     }
 
     fun sortByTotalConfirmedDescending() {
