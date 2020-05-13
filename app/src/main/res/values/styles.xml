@@ -17,7 +17,7 @@
 
     <style name="BottomSheetDialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowSoftInputMode">adjustNothing</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
 </resources>
