@@ -1,12 +1,12 @@
 package com.n2n.covid19.ui.main.filter.search
 
 import android.graphics.Typeface
-import android.service.autofill.OnClickAction
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.n2n.covid19.R
 import com.n2n.covid19.databinding.ItemCountrySearchBinding
 import com.n2n.covid19.extension.setSpanText
 import com.n2n.covid19.model.country.local.CountryDbEntity
@@ -31,7 +31,6 @@ class SearchCountryAdapter : RecyclerView.Adapter<SearchCountryAdapter.ViewHolde
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemCountrySearchBinding.inflate(inflater, parent, false)
-
         return ViewHolder(binding)
     }
 
@@ -47,7 +46,7 @@ class SearchCountryAdapter : RecyclerView.Adapter<SearchCountryAdapter.ViewHolde
 
         fun bind(country: CountryDbEntity) {
             this.country = country
-            setSpanText(binding.tvCountryName, spanText, country.country, boldStyle)
+            binding.tvCountryName.setSpanText(spanText, country.country, boldStyle, R.color.text_highlight)
         }
 
         fun setUpClickListener(onClickListener: View.OnClickListener) {

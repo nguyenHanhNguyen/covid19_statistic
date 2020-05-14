@@ -12,4 +12,5 @@
     <color name="color_confirmed_50">#80F1B036</color>
     <color name="text_title">#FFFFFF</color>
     <color name="color_ic">#000000</color>
+    <color name="text_highlight">#000000</color>
 </resources>

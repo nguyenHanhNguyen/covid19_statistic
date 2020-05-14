@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="country"
             type="com.n2n.covid19.model.country.local.CountryDbEntity" />
