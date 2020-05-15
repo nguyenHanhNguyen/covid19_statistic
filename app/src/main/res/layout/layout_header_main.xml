@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
-        android:minHeight="80dp"
-        android:padding="@dimen/size_8"
+        android:minHeight="65dp"
+        android:paddingTop="@dimen/size_8"
         app:layoutDescription="@xml/motion_scene"
         app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
 
@@ -26,8 +26,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/size_8"
             android:text="Global"
-            android:textSize="@dimen/text_size_20"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_size_20" />
 
         <TextView
             android:id="@+id/tv_total_confirmed_title"
@@ -43,7 +42,7 @@
             android:paddingStart="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
             android:text="@{globalBinding.global.totalConfirmed}"
-            android:textColor="@color/color_confirmed"
+            android:textColor="@color/text_title"
             android:textSize="@dimen/text_size_20"
             tools:text="100" />
 
@@ -61,7 +60,7 @@
             android:paddingStart="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
             android:text="@{globalBinding.global.totalDeath}"
-            android:textColor="@color/color_death"
+            android:textColor="@color/text_title"
             android:textSize="@dimen/text_size_18"
             tools:text="100" />
 
@@ -80,9 +79,14 @@
             android:paddingStart="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
             android:text="@{globalBinding.global.totalRecovered}"
-            android:textColor="@color/color_recover"
+            android:textColor="@color/text_title"
             android:textSize="@dimen/text_size_18"
             tools:text="100" />
+
+        <com.n2n.covid19.ui.main.widget.CustomPercentView
+            android:id="@+id/view_percent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

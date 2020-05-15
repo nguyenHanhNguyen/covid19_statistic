@@ -25,5 +25,8 @@ data class GlobalView(
     val newDeath: String,
     val totalDeath: String,
     val newRecovered: String,
-    val totalRecovered: String
+    val totalRecovered: String,
+    val totalDeathRaw: Int,
+    val totalRecoveredRaw: Int,
+    val totalConfirmedRaw: Int
 )

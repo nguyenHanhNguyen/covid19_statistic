@@ -57,6 +57,9 @@ data class GlobalDomain(
         String.format("%,d", newDeath),
         String.format("%,d", totalDeath),
         String.format("%,d", newRecovered),
-        String.format("%,d", totalRecovered)
+        String.format("%,d", totalRecovered),
+        totalDeath,
+        totalRecovered,
+        totalConfirmed
     )
 }

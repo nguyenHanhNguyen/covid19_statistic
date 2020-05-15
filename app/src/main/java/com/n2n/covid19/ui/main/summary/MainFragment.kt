@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.n2n.covid19.R
 import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.databinding.MainFragmentBinding
+import com.n2n.covid19.model.summary.GlobalView
 import com.n2n.covid19.model.summary.SummaryCountryView
 import com.n2n.covid19.ui.main.filter.FilterBottomSheetDialog
 import com.n2n.covid19.ui.main.filter.SortFragment
@@ -56,6 +57,11 @@ class MainFragment : BaseFragment() {
                 renderCountryList(it)
             }
         )
+        viewModel.global.observe(
+            viewLifecycleOwner, Observer {
+                renderGlobal(it)
+            }
+        )
     }
 
     private fun setUpFilter() {
@@ -94,6 +100,11 @@ class MainFragment : BaseFragment() {
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
         binding.tvUpdated.text = getString(R.string.tv_date, listSummary[0].date)
+    }
+
+    private fun renderGlobal(globalView: GlobalView) {
+        binding.mainHeader.viewPercent.percentDeath = globalView.totalDeathRaw.toFloat() / globalView.totalConfirmedRaw
+        binding.mainHeader.viewPercent.percentRecover = globalView.totalRecoveredRaw.toFloat() / globalView.totalConfirmedRaw
     }
 
 }

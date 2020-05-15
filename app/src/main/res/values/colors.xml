@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple200">#BB86FC</color>
-    <color name="purple500">#6200EE</color>
-    <color name="purple700">#3700B3</color>
-    <color name="teal200">#03DAC5</color>
+    <color name="colorPrimary">#424242</color>
+    <color name="colorPrimaryDark">#006978</color>
+    <color name="colorAccent">#56c8d8</color>
     <color name="color_death">#FF5733</color>
     <color name="color_recover">#10B97A</color>
     <color name="color_confirmed">#F1B036</color>
@@ -13,4 +12,9 @@
     <color name="text_title">#FFFFFF</color>
     <color name="color_ic">#000000</color>
     <color name="text_highlight">#000000</color>
+    <color name="bg_card_item">#454855</color>
+    <color name="divide_color">#FFFFFF</color>
+    <color name="background">#eeffff</color>
+    <color name="bg_header">#39796b</color>
+    <color name="fab_bg">#bb4d00</color>
 </resources>

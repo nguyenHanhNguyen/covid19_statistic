@@ -16,12 +16,14 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:context=".ui.main.summary.MainFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="130dp"
+            android:background="@color/colorPrimary"
             android:theme="@style/Theme.App.AppBarOverlay">
 
             <include
@@ -42,7 +44,6 @@
                 android:padding="@dimen/size_8"
                 android:text="@string/tv_countries"
                 android:textSize="@dimen/text_size_20"
-                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +62,8 @@
                 android:id="@+id/rv_countries"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:padding="@dimen/size_8"
+                android:paddingLeft="@dimen/size_8"
+                android:paddingRight="@dimen/size_8"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -85,6 +87,7 @@
                 android:layout_gravity="bottom|end"
                 android:layout_margin="@dimen/size_16"
                 android:src="@drawable/ic_baseline_sort_24"
+                app:backgroundTint="@color/fab_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
 
