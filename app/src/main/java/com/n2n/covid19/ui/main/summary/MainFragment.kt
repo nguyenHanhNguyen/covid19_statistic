@@ -47,6 +47,7 @@ class MainFragment : BaseFragment() {
         binding.fabSort.setOnClickListener {
             filterDialog.show(activity!!.supportFragmentManager, "FILTER_DIALOG")
         }
+
         setUpCountryList()
         setUpFilter()
     }
@@ -105,6 +106,7 @@ class MainFragment : BaseFragment() {
     private fun renderGlobal(globalView: GlobalView) {
         binding.mainHeader.viewPercent.percentDeath = globalView.totalDeathRaw.toFloat() / globalView.totalConfirmedRaw
         binding.mainHeader.viewPercent.percentRecover = globalView.totalRecoveredRaw.toFloat() / globalView.totalConfirmedRaw
+        binding.mainHeader.viewPercent.invalidate()
     }
 
 }
