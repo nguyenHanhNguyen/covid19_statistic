@@ -3,6 +3,7 @@ package com.n2n.covid19
 import android.content.Context
 import com.n2n.covid19.model.CovidRoomDatabase
 import com.n2n.covid19.model.country.local.CountryDao
+import com.n2n.covid19.model.summary.local.SummaryDao
 import com.n2n.covid19.ui.main.filter.search.Local
 import com.n2n.covid19.ui.main.filter.search.SearchRepository
 import com.n2n.covid19.ui.main.summary.MainRepository
@@ -64,5 +65,11 @@ class ApplicationModule (val context: Context){
     @Singleton
     fun provideSearchRepository(dataSource: Local): SearchRepository {
         return dataSource
+    }
+
+    @Provides
+    @Singleton
+    fun providesSummaryDao(covidDatabase: CovidRoomDatabase): SummaryDao {
+        return covidDatabase.summaryDao()
     }
 }

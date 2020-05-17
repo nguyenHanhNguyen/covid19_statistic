@@ -17,4 +17,5 @@
     <color name="background">#eeffff</color>
     <color name="bg_header">#39796b</color>
     <color name="fab_bg">#bb4d00</color>
+    <color name="grey_search">#80808080</color>
 </resources>

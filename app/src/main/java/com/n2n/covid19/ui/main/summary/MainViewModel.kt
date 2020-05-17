@@ -36,7 +36,6 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
                 ::onGetSummarySuccess
             )
         }
-        getCountryUseCase.getAndSaveCountry()
     }
 
     private fun onGetSummarySuccess(summary: SummaryDomain) {
@@ -44,6 +43,7 @@ class MainViewModel @Inject constructor(private val getSummaryUseCase: GetSummar
             notifyViewLoadSuccess(summary.toSummaryView())
         }
         countriesDomain = summary.countriesList
+        getCountryUseCase.getAndSaveCountry()
     }
 
     fun sortByTotalConfirmedDescending() {

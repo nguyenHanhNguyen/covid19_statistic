@@ -6,7 +6,7 @@ package com.n2n.covid19.exception
  */
 sealed class Failure {
     object NetworkConnection : Failure()
-    object ServerError : Failure()
+    data class ServerError(val errorCode: Int ?= null) : Failure()
 
     /** * Extend this class for feature specific failures.*/
     abstract class FeatureFailure: Failure()

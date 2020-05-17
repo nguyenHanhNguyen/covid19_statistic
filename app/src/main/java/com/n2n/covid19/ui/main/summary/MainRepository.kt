@@ -8,6 +8,8 @@ import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
 import com.n2n.covid19.model.summary.SummaryApiEntity
 import com.n2n.covid19.model.summary.SummaryDomain
+import com.n2n.covid19.model.summary.local.SummaryDao
+import com.n2n.covid19.model.summary.local.SummaryDbEntity
 import com.n2n.covid19.network.BaseNetwork
 import com.n2n.covid19.network.CovidService
 import javax.inject.Inject
@@ -20,9 +22,12 @@ interface MainRepository {
 }
 
 class Network @Inject constructor(private val apiService: CovidService,
-                                  private val countryDao: CountryDao) : BaseNetwork(), MainRepository {
+                                  private val countryDao: CountryDao,
+                                  private val summaryDao: SummaryDao) : BaseNetwork(), MainRepository {
 
     override fun getSummary(): Either<Failure, SummaryDomain> {
+        //todo: get country -> save db -> display UI
+        // if 429, get country from db -> display UI
         return request(apiService.getSummaryData()
             , { it.toSummaryDomain() }
             , SummaryApiEntity())
@@ -59,5 +64,11 @@ class Network @Inject constructor(private val apiService: CovidService,
 
     private fun getCountrySlugFromDb(): List<String> {
         return countryDao.getAllCountrySlug()
+    }
+
+    private fun insertCountySummary(summaries: List<SummaryDbEntity>) {
+        summaries.forEach {
+            summaryDao.insert(it)
+        }
     }
 }

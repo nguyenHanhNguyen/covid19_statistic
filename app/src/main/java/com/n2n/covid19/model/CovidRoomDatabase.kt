@@ -6,13 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
+import com.n2n.covid19.model.summary.local.SummaryDao
+import com.n2n.covid19.model.summary.local.SummaryDbEntity
 
 const val DATABASE_NAME = "covid_database"
 
-@Database(entities = [CountryDbEntity::class], version = 1, exportSchema = false)
+@Database(entities = [CountryDbEntity::class, SummaryDbEntity::class], version = 2, exportSchema = false)
 abstract class CovidRoomDatabase : RoomDatabase() {
 
     abstract fun countryDao(): CountryDao
+
+    abstract fun summaryDao(): SummaryDao
 
     companion object {
 

@@ -11,10 +11,12 @@ open class BaseNetwork {
             val response = call.execute()
             when (response.isSuccessful) {
                 true -> Either.Right(transform((response.body() ?: default)))
-                false -> Either.Left(Failure.ServerError)
+                false -> {
+                    Either.Left(Failure.ServerError(response.code()))
+                }
             }
         } catch (exception: Throwable) {
-            Either.Left(Failure.ServerError)
+            Either.Left(Failure.ServerError(null))
         }
     }
 
