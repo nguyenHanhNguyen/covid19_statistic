@@ -19,7 +19,7 @@ class SearchFragment : BaseFragment() {
     var adapter = SearchCountryAdapter()
 
     interface OnSearchResultClick {
-        fun setSlug(slug: String)
+        fun setResult(country: CountryDbEntity)
     }
 
     var onSearchResultClick: OnSearchResultClick? = null
@@ -37,8 +37,8 @@ class SearchFragment : BaseFragment() {
             }
         )
         adapter.onItemClick = object : SearchCountryAdapter.OnItemClick {
-            override fun onCountryClick(slug: String) {
-                onSearchResultClick?.setSlug(slug)
+            override fun onCountryClick(country: CountryDbEntity) {
+                onSearchResultClick?.setResult(country)
             }
         }
         rv_country_result.layoutManager = LinearLayoutManager(context)

@@ -15,9 +15,6 @@ class SearchViewModel @Inject constructor(private val searchUseCase: SearchUseCa
     fun searchCountry(search: String) {
         searchUseCase.searchCountry(search) {
             _countries.value = it
-            countries.value?.forEach { countryDb ->
-                Log.e("search", countryDb.country)
-            }
         }
     }
 }

@@ -18,14 +18,14 @@ class SearchCountryAdapter : RecyclerView.Adapter<SearchCountryAdapter.ViewHolde
     var spanText = ""
 
     interface OnItemClick {
-        fun onCountryClick(slug: String)
+        fun onCountryClick(country: CountryDbEntity)
     }
 
     lateinit var onItemClick: OnItemClick
 
     private var onClickListener = View.OnClickListener { view ->
         val viewHolder = view.tag as ViewHolder
-        onItemClick.onCountryClick(viewHolder.country.slug)
+        onItemClick.onCountryClick(viewHolder.country)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

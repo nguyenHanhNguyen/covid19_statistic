@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.n2n.covid19.R
 import com.n2n.covid19.core.BaseFragment
 import com.n2n.covid19.databinding.MainFragmentBinding
+import com.n2n.covid19.model.country.local.CountryDbEntity
 import com.n2n.covid19.model.summary.GlobalView
 import com.n2n.covid19.model.summary.SummaryCountryView
 import com.n2n.covid19.ui.main.filter.FilterBottomSheetDialog
@@ -28,6 +29,7 @@ class MainFragment : BaseFragment() {
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
     private lateinit var binding: MainFragmentBinding
+    private lateinit var countryAdapter: CountryAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
@@ -88,8 +90,8 @@ class MainFragment : BaseFragment() {
             }
         }
         filterDialog.onSearchResultClick = object : SearchFragment.OnSearchResultClick {
-            override fun setSlug(slug: String) {
-                Log.e("slug", slug)
+            override fun setResult(country: CountryDbEntity) {
+                countryAdapter.filter.filter(country.country)
                 filterDialog.dismiss()
             }
 
@@ -97,7 +99,7 @@ class MainFragment : BaseFragment() {
     }
 
     private fun renderCountryList(listSummary: List<SummaryCountryView>) {
-        val countryAdapter = CountryAdapter(listSummary)
+        countryAdapter = CountryAdapter(listSummary)
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
         binding.tvUpdated.text = getString(R.string.tv_date, listSummary[0].date)
