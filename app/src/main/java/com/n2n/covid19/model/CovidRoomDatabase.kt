@@ -8,10 +8,11 @@ import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
 import com.n2n.covid19.model.summary.local.SummaryDao
 import com.n2n.covid19.model.summary.local.SummaryDbEntity
+import com.n2n.covid19.util.MIGRATION_1_2
 
 const val DATABASE_NAME = "covid_database"
 
-@Database(entities = [CountryDbEntity::class, SummaryDbEntity::class], version = 2, exportSchema = false)
+@Database(entities = [CountryDbEntity::class, SummaryDbEntity::class], version = 2, exportSchema = true)
 abstract class CovidRoomDatabase : RoomDatabase() {
 
     abstract fun countryDao(): CountryDao
@@ -33,7 +34,7 @@ abstract class CovidRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     CovidRoomDatabase::class.java,
                     DATABASE_NAME
-                ).build()
+                ).addMigrations(MIGRATION_1_2).build()
                 INSTANCE = instance
                 return instance
             }
