@@ -1,6 +1,7 @@
 package com.n2n.covid19.model.summary
 
 import com.google.gson.annotations.SerializedName
+import com.n2n.covid19.model.summary.local.SummaryDbEntity
 
 class SummaryCountryApiEntity {
 
@@ -29,6 +30,17 @@ class SummaryCountryApiEntity {
     var date: String = ""
 
     fun toSummaryCountryDomain() = SummaryCountryDomain(
+        country,
+        newConfirmed,
+        totalConfirmed,
+        newDeath,
+        totalDeath,
+        newRecovered,
+        totalRecovered,
+        date
+    )
+
+    fun toSummaryDbEntity() = SummaryDbEntity(
         country,
         newConfirmed,
         totalConfirmed,

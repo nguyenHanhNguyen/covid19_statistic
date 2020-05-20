@@ -20,7 +20,6 @@ class GetSummaryUseCase @Inject constructor(private val mainRepository: MainRepo
 class GetCountryUseCase @Inject constructor(private val mainRepository: MainRepository) {
 
     fun getAndSaveCountry() {
-        val job = GlobalScope.async(Dispatchers.IO) { mainRepository.getCountriesSaveDb() }
-        GlobalScope.launch { job.await() }
+        GlobalScope.async(Dispatchers.IO) { mainRepository.getCountriesSaveDb() }
     }
 }

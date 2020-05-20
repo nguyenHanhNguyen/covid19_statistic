@@ -28,6 +28,27 @@ class Network @Inject constructor(private val apiService: CovidService,
     override fun getSummary(): Either<Failure, SummaryDomain> {
         //todo: get country -> save db -> display UI
         // if 429, get country from db -> display UI
+        val response = apiService.getSummaryData().execute()
+        when {
+            response.isSuccessful -> {
+                //convert to view model
+                response.body()?.toSummaryDomain()
+                //convert to db entity
+                val countrySummaryDb = response.body()?.countries?.map {
+                    it.toSummaryDbEntity()
+                }
+                insertCountySummary(countrySummaryDb!!)
+            }
+            else -> {
+                if (response.code() == 429 && getAllSummaryFromDb().isNotEmpty()) {
+                    //too much request, take from Db
+                    val countries = getAllSummaryFromDb()
+                    countries.forEach { it.toCountriesSummaryDomain() }
+                } else {
+                    Failure.ServerError(response.code())
+                }
+            }
+        }
         return request(apiService.getSummaryData()
             , { it.toSummaryDomain() }
             , SummaryApiEntity())
@@ -70,5 +91,9 @@ class Network @Inject constructor(private val apiService: CovidService,
         summaries.forEach {
             summaryDao.insert(it)
         }
+    }
+
+    private fun getAllSummaryFromDb(): List<SummaryDbEntity> {
+        return summaryDao.getAllCountrySummary()
     }
 }

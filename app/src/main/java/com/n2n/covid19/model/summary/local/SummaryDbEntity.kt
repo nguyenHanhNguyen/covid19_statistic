@@ -4,6 +4,8 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.n2n.covid19.model.summary.SummaryCountryDomain
+import com.n2n.covid19.model.summary.SummaryDomain
 
 @Entity(tableName = "summary_table")
 data class SummaryDbEntity(
@@ -34,4 +36,8 @@ data class SummaryDbEntity(
     @ColumnInfo(name = "date")
     var date: String
 
-)
+) {
+    fun toCountriesSummaryDomain() = SummaryCountryDomain(
+        country, newConfirmed, totalConfirmed, newDeath, totalDeath, newRecovered, totalRecovered, date
+    )
+}
