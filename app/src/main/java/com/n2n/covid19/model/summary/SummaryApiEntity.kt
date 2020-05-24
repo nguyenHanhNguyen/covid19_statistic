@@ -1,6 +1,7 @@
 package com.n2n.covid19.model.summary
 
 import com.google.gson.annotations.SerializedName
+import com.n2n.covid19.model.summary.local.GlobalDbEntity
 
 class SummaryApiEntity {
 
@@ -45,4 +46,6 @@ class Global {
 
     @SerializedName("TotalRecovered")
     var totalRecovered: Int = 0
+
+    fun toGlobalEntity() = GlobalDbEntity("global", newConfirmed, totalConfirmed, newDeath, totalDeath, newRecovered, totalRecovered)
 }

@@ -8,9 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CovidService @Inject constructor(retrofit: Retrofit): CovidApi {
-
-    private val covidApi by lazy { retrofit.create(CovidApi::class.java) }
+class CovidService @Inject constructor(private val covidApi: CovidApi): CovidApi {
 
     override fun getSummaryData() : Call<SummaryApiEntity> {
         return covidApi.getSummaryData()

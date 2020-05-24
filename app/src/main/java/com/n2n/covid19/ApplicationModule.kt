@@ -3,7 +3,9 @@ package com.n2n.covid19
 import android.content.Context
 import com.n2n.covid19.model.CovidRoomDatabase
 import com.n2n.covid19.model.country.local.CountryDao
+import com.n2n.covid19.model.summary.local.GlobalDao
 import com.n2n.covid19.model.summary.local.SummaryDao
+import com.n2n.covid19.network.CovidApi
 import com.n2n.covid19.ui.main.filter.search.Local
 import com.n2n.covid19.ui.main.filter.search.SearchRepository
 import com.n2n.covid19.ui.main.summary.MainRepository
@@ -19,7 +21,7 @@ import javax.inject.Singleton
 const val API_COVID19 = "https://api.covid19api.com/"
 
 @Module
-class ApplicationModule (val context: Context){
+class ApplicationModule(val context: Context) {
 
     @Provides
     @Singleton
@@ -37,6 +39,12 @@ class ApplicationModule (val context: Context){
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         okHttpClientBuilder.addInterceptor(loggingInterceptor)
         return okHttpClientBuilder.build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCovidApi(retrofit: Retrofit): CovidApi {
+        return retrofit.create(CovidApi::class.java)
     }
 
     @Provides
@@ -72,4 +80,8 @@ class ApplicationModule (val context: Context){
     fun providesSummaryDao(covidDatabase: CovidRoomDatabase): SummaryDao {
         return covidDatabase.summaryDao()
     }
+
+    @Provides
+    @Singleton
+    fun providesGlobalDao(covidDatabase: CovidRoomDatabase): GlobalDao = covidDatabase.globalDao()
 }

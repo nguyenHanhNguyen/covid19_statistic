@@ -8,6 +8,8 @@ import com.n2n.covid19.model.country.local.CountryDao
 import com.n2n.covid19.model.country.local.CountryDbEntity
 import com.n2n.covid19.model.summary.SummaryApiEntity
 import com.n2n.covid19.model.summary.SummaryDomain
+import com.n2n.covid19.model.summary.local.GlobalDao
+import com.n2n.covid19.model.summary.local.GlobalDbEntity
 import com.n2n.covid19.model.summary.local.SummaryDao
 import com.n2n.covid19.model.summary.local.SummaryDbEntity
 import com.n2n.covid19.network.BaseNetwork
@@ -23,35 +25,37 @@ interface MainRepository {
 
 class Network @Inject constructor(private val apiService: CovidService,
                                   private val countryDao: CountryDao,
-                                  private val summaryDao: SummaryDao) : BaseNetwork(), MainRepository {
+                                  private val summaryDao: SummaryDao,
+                                  private val globalDao: GlobalDao) : BaseNetwork(), MainRepository {
 
     override fun getSummary(): Either<Failure, SummaryDomain> {
-        //todo: get country -> save db -> display UI
-        // if 429, get country from db -> display UI
         val response = apiService.getSummaryData().execute()
+
         when {
             response.isSuccessful -> {
-                //convert to view model
-                response.body()?.toSummaryDomain()
-                //convert to db entity
-                val countrySummaryDb = response.body()?.countries?.map {
-                    it.toSummaryDbEntity()
-                }
-                insertCountySummary(countrySummaryDb!!)
+                //convert to db entity and insert db
+                val countrySummaryDb = response.body()?.countries?.map { it.toSummaryDbEntity() }
+                val globalDb = response.body()?.global?.toGlobalEntity()!!
+                insertCountrySummary(countrySummaryDb!!)
+                insertGlobal(globalDb)
+
+                //convert to global domain
+                return Either.Right(response.body()?.toSummaryDomain()!!)
             }
             else -> {
                 if (response.code() == 429 && getAllSummaryFromDb().isNotEmpty()) {
+                    Log.e("summary", "429")
                     //too much request, take from Db
                     val countries = getAllSummaryFromDb()
-                    countries.forEach { it.toCountriesSummaryDomain() }
+                    val global = getGlobalFromDb()
+                    val summaryDomain = SummaryDomain(global.toGlobalDomain(),
+                        countries.map { it.toSummaryCountryDomain() })
+                    return Either.Right(summaryDomain)
                 } else {
-                    Failure.ServerError(response.code())
+                    return Either.Left(Failure.ServerError(response.code()))
                 }
             }
         }
-        return request(apiService.getSummaryData()
-            , { it.toSummaryDomain() }
-            , SummaryApiEntity())
 
     }
 
@@ -87,7 +91,7 @@ class Network @Inject constructor(private val apiService: CovidService,
         return countryDao.getAllCountrySlug()
     }
 
-    private fun insertCountySummary(summaries: List<SummaryDbEntity>) {
+    private fun insertCountrySummary(summaries: List<SummaryDbEntity>) {
         summaries.forEach {
             summaryDao.insert(it)
         }
@@ -96,4 +100,8 @@ class Network @Inject constructor(private val apiService: CovidService,
     private fun getAllSummaryFromDb(): List<SummaryDbEntity> {
         return summaryDao.getAllCountrySummary()
     }
+
+    private fun insertGlobal(global: GlobalDbEntity) = globalDao.insert(global)
+
+    private fun getGlobalFromDb(): GlobalDbEntity = globalDao.getGlobal()
 }

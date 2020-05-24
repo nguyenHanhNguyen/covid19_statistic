@@ -37,7 +37,7 @@ data class SummaryDbEntity(
     var date: String
 
 ) {
-    fun toCountriesSummaryDomain() = SummaryCountryDomain(
+    fun toSummaryCountryDomain() = SummaryCountryDomain(
         country, newConfirmed, totalConfirmed, newDeath, totalDeath, newRecovered, totalRecovered, date
     )
 }
