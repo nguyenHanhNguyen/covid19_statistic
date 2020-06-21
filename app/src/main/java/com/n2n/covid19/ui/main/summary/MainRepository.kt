@@ -43,16 +43,16 @@ class Network @Inject constructor(private val apiService: CovidService,
                 return Either.Right(response.body()?.toSummaryDomain()!!)
             }
             else -> {
-                if (response.code() == 429 && getAllSummaryFromDb().isNotEmpty()) {
+                return if (response.code() == 429 && getAllSummaryFromDb().isNotEmpty()) {
                     Log.e("summary", "429")
                     //too much request, take from Db
                     val countries = getAllSummaryFromDb()
                     val global = getGlobalFromDb()
                     val summaryDomain = SummaryDomain(global.toGlobalDomain(),
                         countries.map { it.toSummaryCountryDomain() })
-                    return Either.Right(summaryDomain)
+                    Either.Right(summaryDomain)
                 } else {
-                    return Either.Left(Failure.ServerError(response.code()))
+                    Either.Left(Failure.ServerError(response.code()))
                 }
             }
         }
