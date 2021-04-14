@@ -29,7 +29,9 @@ class MainFragment : BaseFragment() {
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
     private lateinit var binding: MainFragmentBinding
-    private lateinit var countryAdapter: CountryAdapter
+
+    //private lateinit var countryAdapter: CountryAdapter
+    private lateinit var rCountryAdapter: RefactorCountryAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
@@ -47,7 +49,9 @@ class MainFragment : BaseFragment() {
             globalBinding = viewModel
         }
         binding.fabSort.setOnClickListener {
-            filterDialog.show(activity!!.supportFragmentManager, "FILTER_DIALOG")
+            activity?.let {
+                filterDialog.show(it.supportFragmentManager, "FILTER_DIALOG")
+            }
         }
 
         setUpCountryList()
@@ -91,7 +95,7 @@ class MainFragment : BaseFragment() {
         }
         filterDialog.onSearchResultClick = object : SearchFragment.OnSearchResultClick {
             override fun setResult(country: CountryDbEntity) {
-                countryAdapter.filter.filter(country.country)
+                //countryAdapter.filter.filter(country.country)
                 filterDialog.dismiss()
             }
 
@@ -99,9 +103,14 @@ class MainFragment : BaseFragment() {
     }
 
     private fun renderCountryList(listSummary: List<SummaryCountryView>) {
-        countryAdapter = CountryAdapter(listSummary)
+        rCountryAdapter = RefactorCountryAdapter(listSummary)
+        rCountryAdapter.onBookmarkClick = object : RefactorCountryAdapter.OnBookmarkClick {
+            override fun ClickBookmark(country: SummaryCountryView) {
+                Log.e("saveCountry", country.country)
+            }
+        }
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
-        binding.rvCountries.adapter = countryAdapter
+        binding.rvCountries.adapter = rCountryAdapter
         binding.tvUpdated.text = getString(R.string.tv_date, listSummary[0].date)
     }
 
