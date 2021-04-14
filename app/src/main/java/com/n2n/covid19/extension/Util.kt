@@ -10,7 +10,7 @@ import java.util.*
 
 fun convertUtcFormat(utcDate: String): String {
     var displayTime = ""
-    val utcDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
+    val utcDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
     utcDateFormat.timeZone = TimeZone.getTimeZone("UTC")
     val date = utcDateFormat.parse(utcDate)
 
