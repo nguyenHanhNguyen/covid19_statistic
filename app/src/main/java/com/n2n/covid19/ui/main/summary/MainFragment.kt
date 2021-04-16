@@ -103,12 +103,14 @@ class MainFragment : BaseFragment() {
     }
 
     private fun renderCountryList(listSummary: List<SummaryCountryView>) {
-        rCountryAdapter = RefactorCountryAdapter(listSummary)
-        rCountryAdapter.onBookmarkClick = object : RefactorCountryAdapter.OnBookmarkClick {
-            override fun ClickBookmark(country: SummaryCountryView) {
-                Log.e("saveCountry", country.country)
-            }
+        rCountryAdapter = RefactorCountryAdapter(listSummary) {
+            Log.e("saveCountry", it.country)
         }
+//        rCountryAdapter.onBookmarkClick = object : RefactorCountryAdapter.OnBookmarkClick {
+//            override fun ClickBookmark(country: SummaryCountryView) {
+//                Log.e("saveCountry", country.country)
+//            }
+//        }
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = rCountryAdapter
         binding.tvUpdated.text = getString(R.string.tv_date, listSummary[0].date)

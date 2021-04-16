@@ -57,7 +57,6 @@ class CountryAdapter(private val summaries: List<SummaryCountryView>) :
                 }
                 notifyDataSetChanged()
             }
-
         }
     }
 
