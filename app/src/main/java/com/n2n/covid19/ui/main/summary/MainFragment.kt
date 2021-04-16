@@ -47,7 +47,7 @@ class MainFragment : BaseFragment() {
             globalBinding = viewModel
         }
         binding.fabSort.setOnClickListener {
-            filterDialog.show(activity!!.supportFragmentManager, "FILTER_DIALOG")
+            filterDialog.show(requireActivity().supportFragmentManager, "FILTER_DIALOG")
         }
 
         setUpCountryList()
@@ -89,17 +89,21 @@ class MainFragment : BaseFragment() {
                 filterDialog.dismiss()
             }
         }
-        filterDialog.onSearchResultClick = object : SearchFragment.OnSearchResultClick {
-            override fun setResult(country: CountryDbEntity) {
-                countryAdapter.filter.filter(country.country)
-                filterDialog.dismiss()
-            }
-
-        }
+//        filterDialog.onSearchResultClick = object : SearchFragment.OnSearchResultClick {
+//            override fun setResult(country: CountryDbEntity) {
+//                countryAdapter.filter.filter(country.country)
+//                filterDialog.dismiss()
+//            }
+//        }
     }
 
     private fun renderCountryList(listSummary: List<SummaryCountryView>) {
         countryAdapter = CountryAdapter(listSummary)
+        countryAdapter.onBookMarkClick = object : CountryAdapter.OnBookMarkClick {
+            override fun ClickBookmark(country: SummaryCountryView) {
+                Log.e("bookmark_country", country.country)
+            }
+        }
         binding.rvCountries.layoutManager = LinearLayoutManager(context)
         binding.rvCountries.adapter = countryAdapter
         binding.tvUpdated.text = getString(R.string.tv_date, listSummary[0].date)

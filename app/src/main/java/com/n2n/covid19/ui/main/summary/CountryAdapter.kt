@@ -1,64 +1,48 @@
 package com.n2n.covid19.ui.main.summary
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
+import android.widget.CheckBox
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.n2n.covid19.databinding.ItemCountryBinding
+import com.n2n.covid19.R
 import com.n2n.covid19.model.summary.SummaryCountryView
 
-class CountryAdapter(private val summaries: List<SummaryCountryView>) :
-    RecyclerView.Adapter<CountryAdapter.ViewHolder>(), Filterable {
+class CountryAdapter(private val countries: List<SummaryCountryView>) : RecyclerView.Adapter<CountryViewHolder>() {
 
-    private var filterList = summaries
+    var onBookMarkClick: OnBookMarkClick ?= null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemCountryBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_country, parent, false)
+        return CountryViewHolder(view)
     }
 
-    override fun getItemCount() = filterList.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(filterList[position])
-
-    inner class ViewHolder(private val binding: ItemCountryBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(summary: SummaryCountryView) {
-            binding.country = summary
-            binding.executePendingBindings()
-            binding.viewPercent.percentDeath = summary.totalDeathRaw.toFloat() / summary.totalConfirmedRaw
-            binding.viewPercent.percentRecover = summary.totalRecoveredRaw.toFloat() / summary.totalConfirmedRaw
+    override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
+        val country = countries[position]
+        holder.bookmark.setOnClickListener {
+            onBookMarkClick!!.ClickBookmark(country)
         }
+        holder.country.text = country.country
+        holder.tv_total_confirm.text = country.totalConfirmed
+        holder.total_death.text = country.totalDeath
+        holder.total_recover.text = country.totalRecovered
     }
 
-    override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(filter: CharSequence?): FilterResults {
-                val filterString = filter.toString()
-                filterList = if (filterString.isEmpty()) {
-                    summaries
-                } else {
-                    val resultList = ArrayList<SummaryCountryView>()
-                    summaries.find { it.country.equals(filterString, ignoreCase = false) }?.let {
-                        resultList.add(it)
-                    }
-                    resultList
-                }
-                val filterResult = FilterResults()
-                filterResult.values = filterList
-                return filterResult
-            }
-
-            override fun publishResults(filter: CharSequence?, result: FilterResults?) {
-                result?.let {
-                    filterList = it.values as List<SummaryCountryView>
-                }
-                notifyDataSetChanged()
-            }
-
-        }
+    override fun getItemCount(): Int {
+        return countries.size
     }
 
+    interface OnBookMarkClick {
+        fun ClickBookmark(country: SummaryCountryView)
+    }
+
+}
+
+class CountryViewHolder(layout: View) : RecyclerView.ViewHolder(layout) {
+    val country: TextView = layout.findViewById(R.id.tv_country)
+    val total_recover: TextView = layout.findViewById(R.id.tv_total_recovered)
+    val tv_total_confirm = layout.findViewById<TextView>(R.id.tv_total_confirmed)
+    val total_death = layout.findViewById<TextView>(R.id.tv_total_death)
+    val bookmark = layout.findViewById<CheckBox>(R.id.imv_bookmark)
 }
